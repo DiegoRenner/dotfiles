@@ -7,9 +7,15 @@ base linux linux-firmware
 base-devel 
 git 
 cmake 
+clion
+python
+pip
+pycharm
 
 ########## Networking ##########
-dhcpcd networkmanager openssh 
+dhcpcd 
+networkmanager 
+openssh 
 
 ########## Text Editor  ##########
 vim 
@@ -18,12 +24,14 @@ vim
 wget 
 man-db
 neofetch
-htop 
  
 
 ########## Drivers ##########
+
 ##### CPU #####
 intel-ucode 
+amd-ucode 
+
 ##### GPU #####
 mesa 
 lib32-mesa 
@@ -35,12 +43,64 @@ mesa-vdpau
 lib32-mesa-vdpau
 acpi_call 
 
-########## Sensors ##########
+
+########## Monitoring ##########
 lm_sensors 
+htop
+s-tui
+pytop
+gotop
+nvtop
+
+########## Input ##########
+light
 
 ########## Desktop Environment ##########
 i3 
 i3status 
 lightdm
 xcompmgr 
+rofi
 dunst 
+pacwall
+
+########## Entertainment ##########
+vlc
+steam
+stremio 
+twitch-curses
+youtube-dl
+
+########## Browser ##########
+brave
+chromium
+firefox
+
+########## Image/Document-Viewer ##########
+feh
+evince
+
+########## Crypto  ##########
+monero-gui
+xmrig
+
+########## Audio  ##########
+pavucontrol
+
+########## Streaming  ##########
+obs
+ndi
+ffmpeg
+v4l2loopback
+gphoto
+natron
+
+########## Web Hosting  ##########
+apache
+php
+mysql
+mariadb
+
+########## Password Manager  ##########
+pass
+
