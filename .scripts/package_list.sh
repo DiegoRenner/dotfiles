@@ -11,19 +11,26 @@ clion
 python
 pip
 pycharm
+lapack
+arpack
+arpack++
+eigen
+doxygen
 
 ########## Networking ##########
 dhcpcd 
 networkmanager 
 openssh 
+vpnc
 
 ########## Text Editor  ##########
 vim 
+emacs
 
 ########## Utilities ##########
+cronie
 wget 
 man-db
-neofetch
  
 
 ########## Drivers ##########
@@ -45,24 +52,30 @@ acpi_call
 
 
 ########## Monitoring ##########
+dmidecode
 lm_sensors 
 htop
 s-tui
 pytop
 gotop
 nvtop
+vnstat
+net-tools 
 
 ########## Input ##########
 light
+ddcutil
 
 ########## Desktop Environment ##########
 i3 
 i3status 
 lightdm
 xcompmgr 
+compton
 rofi
 dunst 
 pacwall
+conky
 
 ########## Entertainment ##########
 vlc
@@ -75,6 +88,7 @@ youtube-dl
 brave
 chromium
 firefox
+tor
 
 ########## Image/Document-Viewer ##########
 feh
@@ -97,10 +111,36 @@ natron
 
 ########## Web Hosting  ##########
 apache
+nginx
 php
 mysql
 mariadb
+certbot
 
 ########## Password Manager  ##########
 pass
+
+########## Package Management  ##########
+yay
+pacman-contrib
+
+########## Backups and Storage  ##########
+duplicity
+nextcloud-client
+hdparam
+mdadm
+
+########## Office ##########
+libre-office
+open-office
+
+########## Torrenting ##########
+transmission
+
+########## Eye Candy ##########
+cmatrix
+figlet 
+fetch
+neofetch
+cowsay
 
