@@ -31,6 +31,8 @@ emacs
 cronie
 wget 
 man-db
+zip
+unzip
  
 
 ########## Drivers ##########
@@ -129,6 +131,7 @@ duplicity
 nextcloud-client
 hdparam
 mdadm
+rsync
 
 ########## Office ##########
 libre-office
