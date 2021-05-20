@@ -1,14 +1,21 @@
-#!/bin/bash
+#!/bin/fish
 
-status=$(nmcli radio wifi)
+set status1 (rfkill list | awk 'NR==5 {print $3}')
+#set status1 (nmcli radio wifi)
+#status1=$(nmcli radio wifi)
+#notify-send $status1
 
-if [ $status = "enabled" ] 
-then
-	nmcli radio wifi off
-else
-	nmcli radio wifi on
-fi
+if test $status1 = "yes";
+#if [ $status1 == "no" ]
+	# toggling done by key itself, notify only
+	#nmcli radio wifi off;
+	notify-send "WiFi has been: disabled" -h string:x-canonical-private-synchronous:anything
+else;
+	# toggling done by key itself, notify only
+	#nmcli radio wifi on;
+	notify-send "WiFi has been: enabled" -h string:x-canonical-private-synchronous:anything
+end
 
-status=$(nmcli radio wifi)
+#status1=$(sudo nmcli radio wifi);
 
-echo "WiFi has been: $status"
+#notify-send "WiFi has been: $status1" 
