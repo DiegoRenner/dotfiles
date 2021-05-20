@@ -1,0 +1,10 @@
+#scancodes: hardware (remapping)
+#kexcodes: software (mapping in e.g. i3)
+
+#keycodes in graphical environment
+xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+#keycodes in virtual console
+showkey --keycodes
+
+#scancodes in virtual console
+showkey --scancodes
