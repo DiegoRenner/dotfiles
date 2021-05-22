@@ -353,10 +353,10 @@ bindsym XF86Mail		exec $term -e neomutt && pkill -RTMIN+12 i3blocks
 ##bindsym XF86Go			exec
 ##bindsym XF86Finance		exec
 ##bindsym XF86Game		exec
-bindsym XF86MonBrightnessDown	exec --no-startup-id sudo light -U 10
-bindsym XF86MonBrightnessUp	exec --no-startup-id sudo light -A 10
-bindsym $mod+XF86MonBrightnessDown	exec --no-startup-id sudo light -S 0.099
-bindsym $mod+XF86MonBrightnessUp	exec --no-startup-id sudo light -S 100
+bindsym XF86MonBrightnessDown	exec --no-startup-id adjust_backlight.sh "-U 10"
+bindsym XF86MonBrightnessUp	exec --no-startup-id adjust_backlight.sh "-A 10"
+bindsym $mod+XF86MonBrightnessDown	exec --no-startup-id adjust_backlight.sh "-S 0.099"
+bindsym $mod+XF86MonBrightnessUp	exec --no-startup-id adjust_backlight.sh "-S 100"
 bindsym XF86AudioMedia		exec --no-startup-id $term -e ncmpcpp
 bindsym XF86Display		exec --no-startup-id displayselect
 #bindsym XF86KbdLightOnOff	exec
@@ -367,6 +367,6 @@ bindsym XF86Display		exec --no-startup-id displayselect
 ##bindsym XF86Save		exec
 bindsym XF86Documents		exec $term -e $FILE ~/Documents
 ##bindsym XF86Battery		exec
-##bindsym XF86Bluetooth		exec
-bindsym XF86WLAN		exec toggle_wifi.sh
+bindsym XF86Bluetooth		exec toggle_bluetooth.sh
+bindsym XF86WLAN		exec --no-startup-id toggle_wifi.sh
 

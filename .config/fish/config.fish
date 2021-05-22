@@ -1,21 +1,16 @@
 function fish_greeting 
-end
-fish_vi_key_bindings
-
-
-
-# Verbosity and settings that you pretty much just always are going to want.
+end 
+fish_vi_key_bindings 
+# Verbosity and settings that you pretty much just always are going to want.  
 #alias | awk -F'[ =]' '{print $2}'
-alias bat="cat /sys/class/power_supply/BAT?/capacity"
-#alias cp="cp -iv"
-alias mv="mv -iv"
-alias rm="rm -v"
-alias mkd="mkdir -pv"
-alias yt="youtube-dl --add-metadata -i"
-alias yta="yt -x -f bestaudio/best"
-alias ffmpeg="ffmpeg -hide_banner"
-
-# Colorize commands when possible.
+ alias bat="cat /sys/class/power_supply/BAT?/capacity" 
+#alias cp="cp -iv" 
+alias mv="mv -iv" 
+alias rm="rm -v" 
+alias mkd="mkdir -pv" 
+alias yt="youtube-dl --add-metadata -i" 
+alias yta="yt -x -f bestaudio/best" 
+alias ffmpeg="ffmpeg -hide_banner" # Colorize commands when possible.
 alias ls="ls -hN --color=auto --group-directories-first"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
@@ -53,7 +48,7 @@ alias dlsc="cd /home/diego/Uni/DLSC"
 alias plots="cd /home/diego/Uni/Thesis/matlab_plots"
 alias papers="cd /home/diego/Uni/Thesis/papers"
 alias nvidia="optimus-manager --switch nvidia --no-confirm"
-alias intel="optimus-manager --switch intel --no-confirm"
+alias intel="optimus-manager --switch integrated --no-confirm"
 alias btDC="sudo bluetoothctl power off"
 alias btUE="sudo bluetoothctl power on; bluetoothctl connect 00:0D:44:DD:8D:A0"
 alias btUC="sudo bluetoothctl power on; bluetoothctl connect FC:58:FA:8E:7E:80"
