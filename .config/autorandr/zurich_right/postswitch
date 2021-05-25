@@ -17,6 +17,7 @@ do
 	output=$(i3-msg -t get_workspaces | jq $filter2)
 done
 
+i3-msg workspace 6
 #filter=".[$extd].current_workspace"
 #ws=$(i3-msg -t get_outputs | jq $filter)
 #
