@@ -12,6 +12,6 @@ unclutter &		# Remove mouse when idle
 if [ $(glxinfo | grep "OpenGL vendor" | grep NVIDIA | cut -d " " -f 4) = "NVIDIA" ]
 then 
 	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
-	./.scripts/screenlayout_riehen_right.sh
+	./.scripts/screenlayout_zurich.sh
 fi
 pacwall -ug &
