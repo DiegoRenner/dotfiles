@@ -18,6 +18,8 @@ if [ $(glxinfo | grep "OpenGL vendor" | grep NVIDIA | cut -d " " -f 4) = "NVIDIA
 then 
 	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 	./.scripts/screenlayout_zurich.sh
+else
+	./.scripts/screenlayout_no_ext.sh
 fi
 pacwall -ug &
 EOF
@@ -26,8 +28,13 @@ EOF
 
 # Everything you write here will be executed by the display manager when setting up the login screen in Nvidia mode.
 # (but before optimus-manager sets up PRIME with xrandr commands).
-#nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 /home/diego/.scripts/screenlayout_zurich.sh
+EOF
+	sudo tee /etc/optimus-manager/xsetup-hybrid.sh > /dev/null << 'EOF'
+#!/bin/sh
+
+# Everything you write here will be executed by the display manager when setting up the login screen in "hybrid" mode.
+/home/diego/.scripts/screenlayout_no_ext.sh
 EOF
 
 elif [ "$1" = "riehen" ]
@@ -48,6 +55,8 @@ if [ $(glxinfo | grep "OpenGL vendor" | grep NVIDIA | cut -d " " -f 4) = "NVIDIA
 then 
 	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 	./.scripts/screenlayout_riehen_right.sh
+else
+	./.scripts/screenlayout_no_ext.sh
 fi
 pacwall -ug &
 EOF
@@ -56,8 +65,13 @@ EOF
 
 # Everything you write here will be executed by the display manager when setting up the login screen in Nvidia mode.
 # (but before optimus-manager sets up PRIME with xrandr commands).
-#nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 /home/diego/.scripts/screenlayout_riehen_right.sh
+EOF
+	sudo tee /etc/optimus-manager/xsetup-hybrid.sh > /dev/null << 'EOF'
+#!/bin/sh
+
+# Everything you write here will be executed by the display manager when setting up the login screen in "hybrid" mode.
+/home/diego/.scripts/screenlayout_no_ext.sh
 EOF
 
 else 

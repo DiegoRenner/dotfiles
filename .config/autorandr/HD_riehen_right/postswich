@@ -1,0 +1,51 @@
+#!/bin/bash
+
+/home/diego/.scripts/fix_desktops.sh
+/home/diego/.scripts/screensetup.sh riehen
+#filter=".[$extd].current_workspace"
+#ws=$(i3-msg -t get_outputs | jq $filter)
+#
+#echo $ws
+#for i in 6 7 8 9 10
+#do
+#	if [ "\"$i\"" != $ws ]
+#	then
+#		echo $i
+#	   i3-msg "workspace $i; move workspace to output left"
+#	fi
+#done
+
+#i3-msg "workspace 9; workspace 6"
+#sleep(2)
+#i3-msg "workspace 9; workspace 1"
+
+#for i in 6 7 8 9 10
+#do
+#	name=$(i3-msg -t get_outputs | jq '.[0].name')
+#	
+#	if [ "\"$i\"" != $ws ]
+#	then
+#		echo $i
+#	   i3-msg "workspace $i; move workspace to output left"
+#	fi
+#done
+#
+#num=$(i3-msg -t get_workspaces | jq '.[0].num')
+#output=$(i3-msg -t get_workspaces | jq '.[0].output')
+#
+#count=0
+#while [ "$num" !=  "null" ]
+#do
+#	if [ $num -gt 5 ]
+#	then
+#		if [ $output = "\"
+#		echo $name
+#		break;
+#	fi
+#	extd=$((i+1))
+#	filter=".[$extd].name"
+#	name=$(i3-msg -t get_outputs | jq $filter)
+#done
+#
+#filter=".[$extd].current_workspace"
+#ws=$(i3-msg -t get_outputs | jq $filter)

@@ -13,5 +13,7 @@ if [ $(glxinfo | grep "OpenGL vendor" | grep NVIDIA | cut -d " " -f 4) = "NVIDIA
 then 
 	nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 { ForceFullCompositionPipeline = On }"
 	./.scripts/screenlayout_zurich.sh
+else
+	./.scripts/screenlayout_no_ext.sh
 fi
 pacwall -ug &
