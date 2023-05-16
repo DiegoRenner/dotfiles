@@ -20,9 +20,9 @@ mode "$mode_system" {
 bindsym XF86PowerOff mode "$mode_system"
 
 # #---Basic Definitions---# #
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 3
 gaps inner 0
-gaps outer 0 
+gaps outer 0
 set $term --no-startup-id st
 set $mod Mod4
 set $stoprec --no-startup-id dmenurecord kill
@@ -125,7 +125,7 @@ bindsym $mod+Shift+a		exec $term -e pulsemixer
 bindsym $mod+s			gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
 
-bindsym $mod+d exec rofi -run-list-command "/home/diego/.scripts/list_aliases.sh" -run-command "/bin/fish -i -c '{cmd}'" -font "mono 30" -show run
+bindsym $mod+d exec rofi -run-list-command "/home/diego/.scripts/list_aliases.sh" -run-command "/bin/fish -i -c '{cmd}'" -font "mono 18" -show run
 bindsym $mod+Shift+d exec rofi -show window
 #bindsym $mod+d			exec --no-startup-id rofi
 #bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
@@ -266,93 +266,94 @@ bindsym $mod+Ctrl+Right		move workspace to output right
 
 # #---Media Keys---# #
 # Volume keys
-bindsym $mod+plus		exec --no-startup-id amixer sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym $mod+minus 		exec --no-startup-id amixer sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym $mod+Shift+minus	exec --no-startup-id amixer sset Master 15%- && pkill -RTMIN+10 i3blocks
-bindsym $mod+less 		exec --no-startup-id mpc prev
-bindsym $mod+Shift+less		exec --no-startup-id mpc seek 0%
-bindsym $mod+greater		exec --no-startup-id mpc next
-bindsym $mod+Shift+greater	exec --no-startup-id mpc next
+#bindsym $mod+plus		exec --no-startup-id amixer sset Master 5%+ && pkill -RTMIN+10 i3blocks
+#bindsym $mod+minus 		exec --no-startup-id amixer sset Master 5%- && pkill -RTMIN+10 i3blocks
+#bindsym $mod+Shift+minus	exec --no-startup-id amixer sset Master 15%- && pkill -RTMIN+10 i3blocks
+#bindsym $mod+less 		exec --no-startup-id mpc prev
+#bindsym $mod+Shift+less		exec --no-startup-id mpc seek 0%
+#bindsym $mod+greater		exec --no-startup-id mpc next
+#bindsym $mod+Shift+greater	exec --no-startup-id mpc next
 
 # For advancing forward/backward in an mpd song
-bindsym $mod+bracketleft 	exec --no-startup-id mpc seek -10
-bindsym $mod+Shift+bracketleft 	exec --no-startup-id mpc seek -120
-bindsym $mod+bracketright 	exec --no-startup-id mpc seek +10
-bindsym $mod+Shift+bracketright exec --no-startup-id mpc seek +120
+#bindsym $mod+bracketleft 	exec --no-startup-id mpc seek -10
+#bindsym $mod+Shift+bracketleft 	exec --no-startup-id mpc seek -120
+#bindsym $mod+bracketright 	exec --no-startup-id mpc seek +10
+#bindsym $mod+Shift+bracketright exec --no-startup-id mpc seek +120
 
 # For screenshots and recording
 bindsym Print 			exec --no-startup-id maim pic-full-"$(date '+%y%m%d-%H%M-%S').png"
 bindsym Shift+Print 		exec --no-startup-id maimpick
 bindsym $mod+Print		exec --no-startup-id dmenurecord
-bindsym $mod+Scroll_Lock	exec --no-startup-id "killall screenkey || screenkey"
+#bindsym $mod+Scroll_Lock	exec --no-startup-id "killall screenkey || screenkey"
 bindsym $mod+Delete		exec $stoprec
-bindsym XF86Launch1		exec --no-startup-id xset dpms force off
+#bindsym XF86Launch1		exec --no-startup-id xset dpms force off
 
 # #---Extra XF86 Keys---# #
-#bindsym XF86AudioRaiseVolume exec --no-startup-id ./audiocontrol.sh i3blocks
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% i3blocks
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle i3block	
-#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle i3block
+#bindsym XF86AudioRaiseVolume exec --no-startup-id ./audiocontrol.sh 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1% 
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle 
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle #&& pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 5%- #&& pkill -RTMIN+10 i3blocks
-bindsym Shift+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 10%- #&& pkill -RTMIN+10 i3blocks
-bindsym Control+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 1%- #&& pkill -RTMIN+10 i3blocks
-bindsym XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 5%+ #&& pkill -RTMIN+10 i3blocks
-bindsym Shift+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 10%+ #&& pkill -RTMIN+10 i3blocks
-bindsym Control+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 1%+ #&& pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioMute		exec --no-startup-id amixer sset Master toggle #&& pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 5%- #&& pkill -RTMIN+10 i3blocks
+#bindsym Shift+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 10%- #&& pkill -RTMIN+10 i3blocks
+#bindsym Control+XF86AudioLowerVolume	exec --no-startup-id amixer sset Master 1%- #&& pkill -RTMIN+10 i3blocks
+#bindsym XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 5%+ #&& pkill -RTMIN+10 i3blocks
+#bindsym Shift+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 10%+ #&& pkill -RTMIN+10 i3blocks
+#bindsym Control+XF86AudioRaiseVolume	exec --no-startup-id amixer sset Master 1%+ #&& pkill -RTMIN+10 i3blocks
 #bindsym XF86PowerOff		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
-##bindsym XF86Copy		exec
-##bindsym XF86Open		exec
-##bindsym XF86Paste		exec
-##bindsym XF86Cut		exec
-##bindsym XF86MenuKB		exec
-bindsym XF86Calculator		exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
-##bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
-##bindsym XF86WakeUp		exec
-bindsym XF86Explorer		exec $term -e $FILE
-##bindsym XF86Send		exec
-##bindsym XF86Xfer		exec
-bindsym XF86WWW			exec --no-startup-id $BROWSER
-##bindsym XF86DOS		exec
-bindsym XF86ScreenSaver		exec exec --no-startup-id lockscreen
-##bindsym XF86RotateWindows	exec
-##bindsym XF86TaskPane		exec
-##bindsym XF86Favorites		exec
-bindsym XF86MyComputer		exec $term -e $FILE
-##bindsym XF86Back		exec
-##bindsym XF86Forward		exec
-bindsym XF86Eject		exec --no-startup-id dmenuumount
-bindsym XF86AudioNext		exec --no-startup-id mpc next
-bindsym XF86AudioPlay		exec --no-startup-id mpc toggle
-bindsym XF86AudioPrev		exec --no-startup-id mpc prev
-bindsym XF86AudioStop		exec --no-startup-id mpc toggle
-##bindsym XF86AudioRecord
-bindsym XF86AudioRewind		exec --no-startup-id mpc seek -10
-bindsym XF86AudioForward	exec --no-startup-id mpc seek +10
-##bindsym XF86Phone		exec
-##bindsym XF86Tools		exec
-bindsym XF86Reload		restart
-##bindsym XF86ScrollUp		exec
-##bindsym XF86ScrollDown		exec
-##bindsym XF86New		exec
-##bindsym XF86LaunchA		exec
-##bindsym XF86LaunchB		exec
-##bindsym XF86Launch2		exec
-##bindsym XF86Launch3		exec
-##bindsym XF86Launch4		exec
-##bindsym XF86Launch5		exec
-##bindsym XF86Launch6		exec
-##bindsym XF86Launch7		exec
-##bindsym XF86Launch8		exec
-##bindsym XF86Launch9		exec
-#bindsym XF86AudioMicMute	exec $micmute
-bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
-bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
-bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
-bindsym XF86Suspend		exec --no-startup-id lockscreen
-bindsym XF86Close		kill
-bindsym XF86Mail		exec $term -e neomutt && pkill -RTMIN+12 i3blocks
+#bindsym XF86Copy		exec
+#bindsym XF86Open		exec
+#bindsym XF86Paste		exec
+#bindsym XF86Cut		exec
+#bindsym XF86MenuKB		exec
+#bindsym XF86Calculator		exec --no-startup-id ddspawn dropdowncalc -f mono:pixelsize=24
+#bindsym XF86Sleep		This binding is typically mapped by systemd automatically.
+#bindsym XF86WakeUp		exec
+#bindsym XF86Explorer		exec $term -e $FILE
+#bindsym XF86Send		exec
+#bindsym XF86Xfer		exec
+#bindsym XF86WWW			exec --no-startup-id $BROWSER
+#bindsym XF86DOS		exec
+#bindsym XF86ScreenSaver		exec exec --no-startup-id lockscreen
+#bindsym XF86RotateWindows	exec
+#bindsym XF86TaskPane		exec
+bindsym XF86Favorites		exec toggle_rnn.sh
+#bindsym XF86MyComputer		exec $term -e $FILE
+#bindsym XF86Back		exec
+#bindsym XF86Forward		exec
+#bindsym XF86Eject		exec --no-startup-id dmenuumount
+#bindsym XF86AudioNext		exec --no-startup-id mpc next
+#bindsym XF86AudioPlay		exec --no-startup-id mpc toggle
+#bindsym XF86AudioPrev		exec --no-startup-id mpc prev
+#bindsym XF86AudioStop		exec --no-startup-id mpc toggle
+#bindsym XF86AudioRecord
+#bindsym XF86AudioRewind		exec --no-startup-id mpc seek -10
+#bindsym XF86AudioForward	exec --no-startup-id mpc seek +10
+#bindsym XF86Phone		exec
+#bindsym XF86Tools		exec
+#bindsym XF86Reload		restart
+#bindsym XF86ScrollUp		exec
+#bindsym XF86ScrollDown		exec
+#bindsym XF86New		exec
+#bindsym XF86LaunchA		exec
+#bindsym XF86LaunchB		exec
+#bindsym XF86Launch2		exec
+#bindsym XF86Launch3		exec
+#bindsym XF86Launch4		exec
+#bindsym XF86Launch5		exec
+#bindsym XF86Launch6		exec
+#bindsym XF86Launch7		exec
+#bindsym XF86Launch8		exec
+#bindsym XF86Launch9		exec
+#bindsym XF86AudioMicMute	exec toggle_all_mics.sh
+#bindsym XF86TouchpadToggle	exec --no-startup-id toggletouchpad
+#bindsym XF86TouchpadOn		exec --no-startup-id synclient TouchpadOff=0
+#bindsym XF86TouchpadOff		exec --no-startup-id synclient TouchpadOff=1
+#bindsym XF86Suspend		exec --no-startup-id lockscreen
+#bindsym XF86Close		kill
+#bindsym XF86Mail		exec $term -e neomutt && pkill -RTMIN+12 i3blocks
 ##bindsym XF86Go			exec
 ##bindsym XF86Finance		exec
 ##bindsym XF86Game		exec
@@ -361,16 +362,16 @@ bindsym XF86MonBrightnessUp	exec --no-startup-id adjust_backlight.sh "-A 10"
 bindsym $mod+XF86MonBrightnessDown	exec --no-startup-id adjust_backlight.sh "-S 10"
 bindsym $mod+XF86MonBrightnessUp	exec --no-startup-id adjust_backlight.sh "-S 100"
 bindsym $mod+Shift+XF86MonBrightnessDown	exec --no-startup-id adjust_backlight.sh "-S 0.099"
-bindsym XF86AudioMedia		exec --no-startup-id $term -e ncmpcpp
+#bindsym XF86AudioMedia		exec --no-startup-id $term -e ncmpcpp
 bindsym XF86Display		exec --no-startup-id autorandr -c
 #bindsym XF86KbdLightOnOff	exec
 #bindsym XF86KbdBrightnessDown	exec
 #bindsym XF86KbdBrightnessUp	exec
-##bindsym XF86Reply		exec
-##bindsym XF86MailForward	exec
-##bindsym XF86Save		exec
-bindsym XF86Documents		exec $term -e $FILE ~/Documents
-##bindsym XF86Battery		exec
+#bindsym XF86Reply		exec
+#bindsym XF86MailForward	exec
+#bindsym XF86Save		exec
+#bindsym XF86Documents		exec $term -e $FILE ~/Documents
+#bindsym XF86Battery		exec
 bindsym XF86Bluetooth		exec toggle_bluetooth.sh
 bindsym XF86WLAN		exec --no-startup-id toggle_wifi.sh
 
