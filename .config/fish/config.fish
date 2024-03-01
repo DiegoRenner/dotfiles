@@ -1,5 +1,7 @@
 function fish_greeting 
 end 
+
+source /opt/miniconda3/etc/fish/conf.d/conda.fish
 fish_vi_key_bindings 
 # Verbosity and settings that you pretty much just always are going to want.  
 #alias | awk -F'[ =]' '{print $2}'
@@ -45,6 +47,7 @@ alias nextcloud="/usr/bin/env QT_AUTO_SCREEN_SCALE_FACTOR=2 nextcloud"
 alias xournalpp="/usr/bin/env GDK_SCALE=2 xournalpp"
 alias thesis="cd /home/diego/studies/uni/thesis_maths"
 alias writing="cd /home/diego/studies/uni/thesis_maths/writing/On-fast-simulations-of-cardiac-function"
+alias presentation="cd /home/diego/studies/uni/thesis_maths/writing/On-fast-simulations-of-cardiac-function/presentation"
 alias webs="cd /home/diego/code/PhpstormProjects/portfolio_michael/"
 alias coding="cd /home/diego/studies/uni/thesis_maths/jaxFlowSim"
 alias nvidia="optimus-manager --switch nvidia --no-confirm"
