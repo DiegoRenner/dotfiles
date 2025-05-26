@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Define base directory
+LOCAL_HOME="{$HOME}"
 base_dir="/home/diego/studies/uni/phd/remote"
 
 SSHFS_CONFIG="$HOME/.ssh/config"
