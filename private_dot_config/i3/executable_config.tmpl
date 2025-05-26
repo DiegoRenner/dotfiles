@@ -378,5 +378,9 @@ bindsym XF86WLAN		exec --no-startup-id toggle_wifi.sh
 
 exec --no-startup-id fix_desktops.sh
 exec --no-startup-id setxkbmap ch de
+#exec --no-startup-id barriers --disable-crypto --config /home/diego/.config/barrier/barrier.sgc
+{{ if eq .chezmoi.hostname "mustang" }}
 exec --no-startup-id barriers --disable-crypto --config /home/diego/.config/barrier/barrier.sgc
-
+{{ else }}
+exec --no-startup-id barrierc --disable-crypto 10.42.0.112
+{{ end }}
