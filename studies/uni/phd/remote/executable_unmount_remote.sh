@@ -1,12 +1,6 @@
 #!/bin/bash
 
-{{- if eq .Hostname "mustang" }}
 LOCAL_HOME="/home/diego"
-{{- else if eq .Hostname "laptop" }}
-LOCAL_HOME="/home/drenner"
-{{- else }}
-LOCAL_HOME="{{ .Home }}"
-{{- end }}
 
 SSHFS_CONFIG="$LOCAL_HOME/.ssh/config"
 SSH_KEY="$LOCAL_HOME/.ssh/id_ed25519_tornado.pub"
