@@ -5,8 +5,6 @@ fish_vi_key_bindings
 alias mv="mv -iv"
 alias rm="rm -v"
 alias mkd="mkdir -pv"
-alias yt="youtube-dl --add-metadata -i"
-alias yta="yt -x -f bestaudio/best"
 alias ffmpeg="ffmpeg -hide_banner" # Colorize commands when possible.
 alias ls="ls -hN --color=auto --group-directories-first"
 alias grep="grep --color=auto"
