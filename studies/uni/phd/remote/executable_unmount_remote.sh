@@ -1,20 +1,22 @@
 #!/bin/bash
 
 LOCAL_HOME="/home/diego"
+BASE_DIR="${LOCAL_HOME}/studies/uni/phd/remote"
 
-SSHFS_CONFIG="$LOCAL_HOME/.ssh/config"
-SSH_KEY="$LOCAL_HOME/.ssh/id_ed25519_tornado.pub"
-COMMON_OPTS="-o IdentityFile=${SSH_KEY} \
-             -o reconnect \
-             -o ServerAliveInterval=15 \
-             -o ServerAliveCountMax=3"
+# List of directories to unmount
+mounts=(
+  "gpu_build"
+  "MFEM"
+  "MFEM-benchmark"
+)
 
-# Mount GPU build directory
-sshfs -F "${SSHFS_CONFIG}" ${COMMON_OPTS} \
-  tornado:/home/dbr25/gpu_build \
-  ${LOCAL_HOME}/studies/uni/phd/remote/gpu_build
+for name in "${mounts[@]}"; do
+  local_path="${BASE_DIR}/${name}"
 
-# Mount MFEM directory
-sshfs -F "${SSHFS_CONFIG}" ${COMMON_OPTS} \
-  tornado:/home/dbr25/MFEM \
-  ${LOCAL_HOME}/studies/uni/phd/remote/MFEM
+  if mountpoint -q "$local_path"; then
+    echo "Unmounting $local_path"
+    fusermount -u "$local_path"
+  else
+    echo "$local_path is not mounted"
+  fi
+done
