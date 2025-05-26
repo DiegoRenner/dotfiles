@@ -1,0 +1,22 @@
+section: screens
+    mustang:
+    thinkpad:
+end
+
+section: links
+    mustang:
+        right = thinkpad
+    thinkpad:
+        left = mustang
+end
+
+section: options
+    relativeMouseMoves = true
+    screenSaverSync = false
+    switchCorners = none
+    switchCornerSize = 0
+    keystroke(alt+left)  = switchInDirection(left)
+    keystroke(alt+right) = switchInDirection(right)
+    keystroke(alt+h)  = switchInDirection(left)
+    keystroke(alt+l) = switchInDirection(right)
+end
