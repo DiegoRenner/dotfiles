@@ -375,8 +375,6 @@ bindsym XF86Display		exec --no-startup-id autorandr -c
 #bindsym XF86Battery		exec
 bindsym XF86Bluetooth		exec toggle_bluetooth.sh
 bindsym XF86WLAN		exec --no-startup-id toggle_wifi.sh
-bindsym $mod+Mod1+Right exec --no-startup-id "xdotool mousemove_relative -- 10000 0"
-bindsym $mod+Mod1+Left exec --no-startup-id "xdotool mousemove_relative -- -100000 0"
 
 exec --no-startup-id fix_desktops.sh
 exec --no-startup-id setxkbmap ch de
