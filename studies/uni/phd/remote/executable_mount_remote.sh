@@ -14,7 +14,7 @@ COMMON_OPTS="-o IdentityFile=${SSH_KEY} \
 declare -A mounts=(
   [gpu_build]="/home/dbr25/gpu_build"
   [MFEM]="/home/dbr25/MFEM"
-  [MFEM - benchmark]="/home/dbr25/MFEM-benchmark"
+  [MFEM\-benchmark]="/home/dbr25/MFEM-benchmark"
 )
 
 for name in "${!mounts[@]}"; do
