@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# degfine base directories
+# Define base directory
 base_dir="/home/diego/studies/uni/phd/remote"
 
 SSHFS_CONFIG="$HOME/.ssh/config"
@@ -10,12 +10,25 @@ COMMON_OPTS="-o IdentityFile=${SSH_KEY} \
              -o ServerAliveInterval=15 \
              -o ServerAliveCountMax=3"
 
-# Mount GPU build directory
-sshfs -F "${SSHFS_CONFIG}" ${COMMON_OPTS} \
-  tornado:/home/dbr25/gpu_build \
-  ${base_dir}/gpu_build
+# Define remote:local mount points
+declare -A mounts=(
+  [gpu_build]="/home/dbr25/gpu_build"
+  [MFEM]="/home/dbr25/MFEM"
+  [MFEM - benchmark]="/home/dbr25/MFEM-benchmark"
+)
 
-# Mount MFEM directory
-sshfs -F "${SSHFS_CONFIG}" ${COMMON_OPTS} \
-  tornado:/home/dbr25/MFEM \
-  {$base_dir}/MFEM
+for name in "${!mounts[@]}"; do
+  remote_path="${mounts[$name]}"
+  local_path="${base_dir}/${name}"
+
+  # Check and create local mount point if needed
+  if [ ! -d "$local_path" ]; then
+    echo "Creating local directory: $local_path"
+    mkdir -p "$local_path"
+  fi
+
+  echo "Mounting ${remote_path} to ${local_path}"
+  sshfs -F "${SSHFS_CONFIG}" ${COMMON_OPTS} \
+    tornado:"${remote_path}" \
+    "${local_path}"
+done
