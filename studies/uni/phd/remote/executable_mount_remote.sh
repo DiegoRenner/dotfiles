@@ -18,7 +18,7 @@ declare -A mounts=(
   [gpu_build]="${remote_base_dir}/gpu_build"
   [MFEM]="${remote_base_dir}/MFEM"
   [MFEM\-benchmark]="${remote_base_dir}/MFEM-benchmark"
-  [nektar\-cu\-blas]="${remote_base_dir}/nektar-cu-blas"
+  [nektar\-cu\-blas\-mika]="${remote_base_dir}/nektar-cu-blas-mika"
 )
 
 for name in "${!mounts[@]}"; do
