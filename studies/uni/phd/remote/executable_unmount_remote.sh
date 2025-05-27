@@ -8,6 +8,7 @@ mounts=(
   "gpu_build"
   "MFEM"
   "MFEM-benchmark"
+  "nektar-cu-blas-mika"
 )
 
 for name in "${mounts[@]}"; do

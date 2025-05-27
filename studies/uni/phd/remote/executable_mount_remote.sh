@@ -11,11 +11,14 @@ COMMON_OPTS="-o IdentityFile=${SSH_KEY} \
              -o ServerAliveInterval=15 \
              -o ServerAliveCountMax=3"
 
+# Define remote base directory
+remote_base_dir="/home/dbr25"
 # Define remote:local mount points
 declare -A mounts=(
-  [gpu_build]="/home/dbr25/gpu_build"
-  [MFEM]="/home/dbr25/MFEM"
-  [MFEM\-benchmark]="/home/dbr25/MFEM-benchmark"
+  [gpu_build]="${remote_base_dir}/gpu_build"
+  [MFEM]="${remote_base_dir}/MFEM"
+  [MFEM\-benchmark]="${remote_base_dir}/MFEM-benchmark"
+  [nektar\-cu\-blas]="${remote_base_dir}/nektar-cu-blas"
 )
 
 for name in "${!mounts[@]}"; do
