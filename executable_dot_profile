@@ -16,6 +16,9 @@ export BROWSER="brave"
 export READER="zathura"
 export FILE="ranger"
 export PAGER="less"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+
 
 # Clean-up:
 export NOTMUCH_CONFIG="$HOME/.config/notmuch-config"
