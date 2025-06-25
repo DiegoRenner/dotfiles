@@ -1,0 +1,139 @@
+  AddKeysToAgent yes
+  #	PubkeyAcceptedKeyTypes ssh-rsa
+Host euler 
+  HostName		euler.ethz.ch
+  User			drenner
+  IdentityFile	~/.ssh/id_ed25519_euler
+Host leonhard
+  HostName		login.leonhard.ethz.ch
+  User			drenner
+  IdentityFile	~/.ssh/id_ed25519_leonhard
+Host stevetown
+  HostName		192.168.1.74
+  User			steve
+  IdentityFile	~/.ssh/id_rsa
+  Port 			1522
+Host stevetown_ext
+  HostName		192.168.1.15
+  User			steve
+  IdentityFile	~/.ssh/id_rsa
+  ProxyCommand 	ssh rig2 -W %h:%p
+  Port 			1522
+Host rig1
+  HostName		rhub.hopto.org
+  User			root
+  IdentityFile	~/.ssh/id_rsa_rig1
+  Port			1022
+Host rig2
+  HostName		rhub.hopto.org
+  User			root
+  IdentityFile	~/.ssh/id_rsa_rig2
+  Port			1122
+Host home
+  HostName		192.168.1.41
+  User			diego
+  IdentityFile	~/.ssh/id_rsa
+  Port 			1422
+Host home_ext
+  Hostname 		192.168.1.41
+  User			diego
+  IdentityFile	~/.ssh/id_rsa
+  ProxyCommand 	ssh pi4_ext -W %h:%p
+  Port 			1422
+Host the_old_one
+  HostName		192.168.1.2
+  User			root
+  IdentityFile	~/.ssh/id_rsa_minejaro
+  Port			1522
+Host the_old_one_ext
+  Hostname 		192.168.1.2
+  User			root
+  IdentityFile	~/.ssh/id_rsa_minejaro
+  ProxyCommand 	ssh pi2_ext -W %h:%p
+  Port			1522
+Host shallowblue
+  Hostname 		192.168.1.16
+  User			root
+  IdentityFile	~/.ssh/id_rsa_shallowblue
+  Port			1422
+Host shallowblue_ext
+  Hostname 		192.168.1.16
+  User			root
+  IdentityFile	~/.ssh/id_rsa_shallowblue
+  ProxyCommand 	ssh pi2_ext -W %h:%p
+  Port			1422
+Host mustang
+  Hostname 		192.168.1.32
+  User			diego
+  IdentityFile	~/.ssh/id_rsa_mustang
+Host mustang_ext
+  Hostname 		192.168.1.32
+  User			diego
+  IdentityFile	~/.ssh/id_rsa_mustang
+  ProxyCommand 	ssh pi4_ext -W %h:%p
+Host mustang_ext_root
+  Hostname 		192.168.1.32
+  User			root
+  IdentityFile	~/.ssh/id_rsa_mustang
+  ProxyCommand 	ssh pi4_ext -W %h:%p
+Host pi4
+  Hostname 		192.168.1.23
+  User 			pi
+  #ProxyCommand 	ssh rig2  -W %h:%p
+  #IdentityFile	~/.ssh/id_rsa_pi4
+  Port 			1222
+Host pi4_ext
+  HostName		rhub.hopto.org
+  User			pi
+  #IdentityFile	~/.ssh/id_rsa_pi4
+  #ProxyCommand 	ssh rig2 -W %h:%p
+  Port 			1222
+  #Host pi4_ext
+  #	Hostname 		rhub.hopto.org
+  #	User 			pi
+  #	IdentityFile	~/.ssh/id_rsa_pi4
+  #	Port 			1222
+Host pi2
+  Hostname 		192.168.1.70
+  User 			diego
+  IdentityFile	~/.ssh/id_rsa_pi2
+  Port 			1122
+Host pi2_ext
+  Hostname 		udw.hopto.org
+  User			diego
+  ProxyCommand 	ssh pi4 -W %h:%p
+  IdentityFile	~/.ssh/id_rsa_pi2
+  Port			1122
+Host pi3
+  Hostname 		192.168.1.31
+  User 			diego
+  IdentityFile	~/.ssh/id_rsa_pi3
+  Port 			1122
+Host pi3_ext
+  Hostname 		rhub.hopto.org
+  User 			diego
+  ProxyCommand 	ssh rig2 -W %h:%p
+  IdentityFile	~/.ssh/id_rsa_pi3
+  Port 			1122
+Host git@github.com
+  Hostname 		github.com
+  User 			git
+  IdentityFile	~/.ssh/id_rsa_git
+Host gitlab.nektar.info
+  PreferredAuthentications publickey
+  IdentityFile	~/.ssh/id_ed25519_gitlab_nektar
+Host gitlab.math.ethz.ch
+  PreferredAuthentications publickey
+  IdentityFile	~/.ssh/id_rsa_gitlab
+Host typhoon
+  Hostname  typhoon.ae.ic.ac.uk
+  User            dbr25
+  IdentityFile	~/.ssh/id_ed25519_typhoon
+Host tornado
+  Hostname  tornado.ae.ic.ac.uk
+  User            dbr25
+  IdentityFile	~/.ssh/id_ed25519_tornado
+Host whirlwind
+  Hostname  whirlwind.ae.ic.ac.uk
+  User            dbr25
+  IdentityFile	~/.ssh/id_ed25519_whirlwind
