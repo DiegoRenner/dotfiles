@@ -2,7 +2,10 @@
 # Profile file. Runs on login. Environmental variables are set here.
 
 # Adds `~/.local/bin` to $PATH
+{{ if eq .chezmoi.osRelease.id "arch" }}
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+# darwin
+{{ end }}
 export PATH="$PATH:/home/diego/.scripts"
 export PATH="$PATH:/opt/depot_tools"
 export PATH="$PATH:/home/diego/.gem/ruby/2.7.0/bin"
