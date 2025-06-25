@@ -115,10 +115,9 @@ Host pi3_ext
   ProxyCommand 	ssh rig2 -W %h:%p
   IdentityFile	~/.ssh/id_rsa_pi3
   Port 			1122
-Host git@github.com
-  Hostname 		github.com
-  User 			git
-  IdentityFile	~/.ssh/id_rsa_git
+Host github.com
+  PreferredAuthentications publickey
+  IdentityFile	~/.ssh/id_ed25519_github
 Host gitlab.nektar.info
   PreferredAuthentications publickey
   IdentityFile	~/.ssh/id_ed25519_gitlab_nektar
