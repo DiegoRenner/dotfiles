@@ -55,5 +55,9 @@ alias web="cd /home/diego/code/webapp/"
 alias plan="cd /home/diego/code/planner-matrix/"
 alias jax="cd /home/diego/studies/uni/thesis_maths/jaxFlowSim/"
 
+{{ if eq .chezmoi.osRelease.id "nixos" }}
+alias conf="sudo nvim /etc/nixos/configuration.nix"
+{{ end }}
+
 # fzf recent dirs
 zoxide init fish | source
