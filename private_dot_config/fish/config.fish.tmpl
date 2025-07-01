@@ -61,6 +61,8 @@ alias cswitch="sudo nixos-rebuild switch"
 
 {{ if eq .chezmoi.osRelease.id "arch" }}
 alias assume="source /usr/bin/assume.fish"
+{{ else if eq .chezmoi.osRelease.id "nixos" }}
+alias assume="/run/current-system/sw/bin/assume"
 {{ end }}
 
 # fzf recent dirs
