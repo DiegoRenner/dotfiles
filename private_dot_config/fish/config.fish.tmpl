@@ -47,7 +47,6 @@ alias wmoto="xmoto -res 960x540 -win"
 alias swmoto="xmoto -res 840x525 -win"
 alias bckp="backup_duplicity.sh"
 alias dls="youtube-dl -x --audio-quality 0 --audio-format m4a"
-alias assume="source /usr/bin/assume.fish"
 alias remote="cd /home/diego/studies/uni/phd/remote/"
 alias phd="cd /home/diego/studies/uni/phd"
 alias gpu="cd /home/diego/studies/uni/phd/gpu_build/"
@@ -58,6 +57,10 @@ alias jax="cd /home/diego/studies/uni/thesis_maths/jaxFlowSim/"
 {{ if eq .chezmoi.osRelease.id "nixos" }}
 alias conf="sudo nvim /etc/nixos/configuration.nix"
 alias cswitch="sudo nixos-rebuild switch"
+{{ end }}
+
+{{ if eq .chezmoi.osRelease.id "arch" }}
+alias assume="source /usr/bin/assume.fish"
 {{ end }}
 
 # fzf recent dirs
