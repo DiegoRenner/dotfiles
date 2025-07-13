@@ -136,3 +136,14 @@ Host whirlwind
   Hostname  whirlwind.ae.ic.ac.uk
   User            dbr25
   IdentityFile	~/.ssh/id_ed25519_whirlwind
+Host android
+  Hostname 192.168.1.122
+  User u0_a453
+  Port 8022
+  IdentityFile ~/.ssh/id_ed25519_android
+Host tornado_prox
+  Hostname  tornado.ae.ic.ac.uk
+  User            dbr25
+  IdentityFile	~/.ssh/id_ed25519_tornado
+  ProxyCommand 	ssh android -W %h:%p
+
