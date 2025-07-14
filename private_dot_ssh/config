@@ -132,6 +132,8 @@ Host tornado
   Hostname  tornado.ae.ic.ac.uk
   User            dbr25
   IdentityFile	~/.ssh/id_ed25519_tornado
+  Compression yes
+  ForwardX11 yes
 Host whirlwind
   Hostname  whirlwind.ae.ic.ac.uk
   User            dbr25
@@ -145,5 +147,7 @@ Host tornado_prox
   Hostname  tornado.ae.ic.ac.uk
   User            dbr25
   IdentityFile	~/.ssh/id_ed25519_tornado
+  Compression yes
+  ForwardX11 yes
   ProxyCommand 	ssh android -W %h:%p
 
