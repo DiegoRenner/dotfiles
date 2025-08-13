@@ -128,6 +128,8 @@ Host typhoon
   Hostname  typhoon.ae.ic.ac.uk
   User            dbr25
   IdentityFile	~/.ssh/id_ed25519_typhoon
+  Compression yes
+  ForwardX11 yes
 Host tornado
   Hostname  tornado.ae.ic.ac.uk
   User            dbr25
@@ -150,4 +152,8 @@ Host tornado_prox
   Compression yes
   ForwardX11 yes
   ProxyCommand 	ssh android -W %h:%p
-
+Host nighthawk
+  Hostname  nighthawk.ae.ic.ac.uk
+  User            dbr25
+  Compression yes
+  ForwardX11 yes
