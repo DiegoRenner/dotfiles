@@ -1,6 +1,27 @@
 function fish_greeting
 end
 
+# set env vars
+set -gx PATH "$PATH:/home/diego/.scripts"
+set -gx PATH "$PATH:/opt/depot_tools"
+set -gx PATH "$PATH:/home/diego/.gem/ruby/2.7.0/bin"
+set -gx PATH "$PATH:/home/diego/.cargo/bin/bender"
+
+set -gx EDITOR nvim
+set -gx TERMINAL st
+set -gx BROWSER brave
+set -gx READER zathura
+set -gx FILE ranger
+set -gx PAGER less
+set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+set -gx NOTMUCH_CONFIG "$HOME/.config/notmuch-config"
+set -gx GTK2_RC_FILES "$HOME/.config/gtk-2.0/gtkrc-2.0"
+set -gx LESSHISTFILE -
+set -gx ZDOTDIR "$HOME/.config/zsh"
+
+set -gx QSYS_ROOTDIR "/home/diego/.cache/yay/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/23.1/quartus/sopc_builder/bin"
+
 fish_vi_key_bindings
 alias mv="mv -iv"
 alias rm="rm -v"
