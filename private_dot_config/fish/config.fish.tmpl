@@ -8,7 +8,11 @@ set -gx PATH "$PATH:/home/diego/.gem/ruby/2.7.0/bin"
 set -gx PATH "$PATH:/home/diego/.cargo/bin/bender"
 set -gx PATH "$PATH:/home/diego/.local/bin"
 # add cuda to path
+set -gx CUDA_PATH "/opt/cuda"
 set -gx PATH "$PATH:/opt/cuda/bin"
+set -gx PATH "$PATH:/opt/cuda/nsight_compute"
+set -gx PATH "$PATH:/opt/cuda/nsight_systems/bin"
+set -gx NVCC_CCBIN "/usr/bin/g++-14"
 
 
 set -gx EDITOR nvim
