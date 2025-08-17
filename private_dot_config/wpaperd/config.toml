@@ -1,0 +1,10 @@
+[default]
+duration = "3s"
+mode = "center"
+sorting = "ascending"
+
+[eDP-1]
+path = "/home/diego/.config/wpaperd/wallpapers/horizontal"
+
+[HDMI-A-1]
+path = "/home/diego/.config/wpaperd/wallpapers/vertical"
