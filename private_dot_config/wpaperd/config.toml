@@ -6,5 +6,8 @@ sorting = "ascending"
 [eDP-1]
 path = "/home/diego/.config/wpaperd/wallpapers/horizontal"
 
+[eDP-2]
+path = "/home/diego/.config/wpaperd/wallpapers/horizontal"
+
 [HDMI-A-1]
 path = "/home/diego/.config/wpaperd/wallpapers/vertical"
