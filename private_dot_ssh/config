@@ -157,3 +157,10 @@ Host nighthawk
   User            dbr25
   Compression yes
   ForwardX11 yes
+Host ap
+  Hostname  192.168.1.32
+  User            diego
+  Port 1822
+  Compression yes
+  ForwardX11 yes
+  IdentityFile	~/.ssh/id_ed25519_ap
