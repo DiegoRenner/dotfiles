@@ -121,6 +121,7 @@ Host github.com
 Host gitlab.nektar.info
   PreferredAuthentications publickey
   IdentityFile	~/.ssh/id_ed25519_gitlab_nektar
+  User git
 Host gitlab.math.ethz.ch
   PreferredAuthentications publickey
   IdentityFile	~/.ssh/id_rsa_gitlab
@@ -153,10 +154,11 @@ Host tornado_prox
   ForwardX11 yes
   ProxyCommand 	ssh android -W %h:%p
 Host nighthawk
-  Hostname  nighthawk.ae.ic.ac.uk
+  Hostname  nighthawk-10g-a.ae.ic.ac.uk
   User            dbr25
   Compression yes
   ForwardX11 yes
+  IdentityFile	~/.ssh/id_ed25519_nighthawk
 Host ap
   Hostname  192.168.1.32
   User            diego
