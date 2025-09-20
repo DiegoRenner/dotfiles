@@ -63,9 +63,9 @@ Host shallowblue_ext
   ProxyCommand 	ssh pi2_ext -W %h:%p
   Port			1422
 Host mustang
-  Hostname 		10.42.0.112
+  Hostname 		192.168.1.225
   User			diego
-  IdentityFile	~/.ssh/id_rsa_mustang
+  IdentityFile	~/.ssh/id_ed25519_mustang
 Host mustang_ext
   Hostname 		192.168.1.32
   User			diego
