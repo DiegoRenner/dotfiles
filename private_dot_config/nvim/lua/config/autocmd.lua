@@ -1,0 +1,10 @@
+-- Auto-save on buffer change (text change or focus lost)
+-- vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "FocusLost", "BufLeave" }, {
+-- vim.api.nvim_create_autocmd({ "InsertLeave", "FocusLost", "BufLeave" }, {
+--   pattern = { "*.tex" },
+--   callback = function()
+--     if vim.bo.modified then
+--       vim.cmd("silent write")
+--     end
+--   end,
+-- })
