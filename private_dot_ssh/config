@@ -85,7 +85,7 @@ Host pi4
 Host pi4_ext
   HostName		rhub.hopto.org
   User			pi
-  #IdentityFile	~/.ssh/id_rsa_pi4
+  IdentityFile	~/.ssh/id_rsa_pi4
   #ProxyCommand 	ssh rig2 -W %h:%p
   Port 			1222
   #Host pi4_ext
@@ -166,3 +166,17 @@ Host ap
   Compression yes
   ForwardX11 yes
   IdentityFile	~/.ssh/id_ed25519_ap
+Host ash-nazg
+  Hostname  192.168.1.62
+  User            diego
+  Port 1422
+  Compression yes
+  ForwardX11 yes
+  IdentityFile	~/.ssh/id_ed25519_ash-nazg
+Host ash-nazg_ext
+  Hostname  192.168.1.62
+  User            diego
+  Port 1422
+  Compression yes
+  ForwardX11 yes
+  IdentityFile	~/.ssh/id_ed25519_ash-nazg
