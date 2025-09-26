@@ -80,7 +80,7 @@ Host pi4
   Hostname 		192.168.1.23
   User 			pi
   #ProxyCommand 	ssh rig2  -W %h:%p
-  #IdentityFile	~/.ssh/id_rsa_pi4
+  IdentityFile	~/.ssh/id_rsa_pi4
   Port 			1222
 Host pi4_ext
   HostName		rhub.hopto.org
