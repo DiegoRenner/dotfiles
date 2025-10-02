@@ -180,3 +180,4 @@ Host ash-nazg_ext
   Compression yes
   ForwardX11 yes
   IdentityFile	~/.ssh/id_ed25519_ash-nazg
+  ProxyCommand 	ssh pi4_ext -W %h:%p
