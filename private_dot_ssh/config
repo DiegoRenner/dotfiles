@@ -174,10 +174,9 @@ Host ash-nazg
   ForwardX11 yes
   IdentityFile	~/.ssh/id_ed25519_ash-nazg
 Host ash-nazg_ext
-  Hostname  192.168.1.62
+  Hostname  rhub.hopto.org
   User            diego
   Port 1422
   Compression yes
   ForwardX11 yes
   IdentityFile	~/.ssh/id_ed25519_ash-nazg
-  ProxyCommand 	ssh pi4_ext -W %h:%p
