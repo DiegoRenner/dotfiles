@@ -1,0 +1,46 @@
+# ~/.config/swaylock/config
+
+# General
+ignore-empty-password
+show-failed-attempts
+
+# Colors
+# Background (semi-transparent dark gray)
+color=1a1a1aff
+
+# Inside of ring (normal)
+inside-color=00000088
+
+# Inside of ring (cleared)
+inside-clear-color=00bcd488
+
+# Inside of ring (verifying)
+inside-ver-color=00ff9988
+
+# Inside of ring (wrong password)
+inside-wrong-color=d2042d88
+
+# Ring border colors
+ring-color=33ccffcc
+ring-clear-color=00bcd4cc
+ring-ver-color=00ff99cc
+ring-wrong-color=d2042dcc
+
+# Text colors
+text-color=ffffffff
+text-clear-color=ffffffff
+text-ver-color=ffffffff
+text-wrong-color=ffffffff
+
+# Separator and layout
+line-color=00000000
+key-hl-color=00ff99ff
+bs-hl-color=d2042dff
+
+# Indicator
+indicator-radius=130
+indicator-thickness=10
+
+# Font
+font=Hack Nerd Font Mono
+
