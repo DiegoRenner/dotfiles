@@ -1,46 +1,31 @@
-# ~/.config/swaylock/config
+# Colors harmonized with pacwall
 
-# General
-ignore-empty-password
-show-failed-attempts
+# Background
+color=16161d
 
-# Colors
-# Background (semi-transparent dark gray)
-color=1a1a1aff
+# Ring (indicator border)
+ring-color=fdf6e30a
+ring-clear-color=009CA6
+ring-ver-color=D86018
+ring-wrong-color=DA2C38
 
-# Inside of ring (normal)
-inside-color=00000088
+# Inside (indicator fill)
+inside-color=16161d
+inside-clear-color=16161d
+inside-ver-color=16161d
+inside-wrong-color=16161d
 
-# Inside of ring (cleared)
-inside-clear-color=00bcd488
+# Separator and text
+separator-color=16161d
+text-color=fdf6e3
+key-hl-color=009CA6
+bs-hl-color=D86018
+caps-lock-key-hl-color=009CA6
+caps-lock-bs-hl-color=D86018
+inside-caps-lock-color=527C5F
 
-# Inside of ring (verifying)
-inside-ver-color=00ff9988
-
-# Inside of ring (wrong password)
-inside-wrong-color=d2042d88
-
-# Ring border colors
-ring-color=33ccffcc
-ring-clear-color=00bcd4cc
-ring-ver-color=00ff99cc
-ring-wrong-color=d2042dcc
-
-# Text colors
-text-color=ffffffff
-text-clear-color=ffffffff
-text-ver-color=ffffffff
-text-wrong-color=ffffffff
-
-# Separator and layout
-line-color=00000000
-key-hl-color=00ff99ff
-bs-hl-color=d2042dff
-
-# Indicator
-indicator-radius=130
+# Layout / style
+indicator-radius=120
 indicator-thickness=10
-
-# Font
-font=Hack Nerd Font Mono
-
+indicator-caps-lock
+font=monospace
