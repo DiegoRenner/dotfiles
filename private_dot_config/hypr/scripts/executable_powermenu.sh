@@ -34,7 +34,7 @@ case $exit_code in
 11) # Corresponds to -kb-custom-2 (r)
   systemctl reboot
   ;;
-12) # Corresponds to -kb-custom-3 (pu
+12) # Corresponds to -kb-custom-3 (u)
   systemctl suspend
   ;;
 13) # Corresponds to -kb-custom-4 (h)
