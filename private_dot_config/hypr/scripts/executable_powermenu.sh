@@ -14,13 +14,13 @@ options=" [S]hutdown\n [R]eboot\n S[u]spend\n [H]ibernate\n [L]oc
 # -kb-custom-[n]: Binds a key to a custom action. When the key is pressed,
 #                 rofi exits with a return code of 10 + n.
 #                 For example, -kb-custom-1 (bound to 's') exits with code 10.
-echo -e "$options" | rofi -dmenu -i -p "Power Menu" \
+chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" \
   -kb-custom-1 "s,S" \
   -kb-custom-2 "r,R" \
   -kb-custom-3 "u,U" \
   -kb-custom-4 "h,H" \
   -kb-custom-5 "l,L" \
-  -kb-custom-6 "o,O"
+  -kb-custom-6 "o,O")
 
 # Get the exit code from the rofi command.
 exit_code=$?
@@ -44,6 +44,29 @@ case $exit_code in
   swaylock
   ;;
 15) # Corresponds to -kb-custom-6 (o)
+  hyprctl dispatch exit
+  ;;
+esac
+
+echo $chosen
+# Execute the command based on the choice
+case "$chosen" in
+" [S]hutdown")
+  systemctl poweroff
+  ;;
+" [R]eboot")
+  systemctl reboot
+  ;;
+" S[u]spend")
+  systemctl suspend
+  ;;
+" [H]ibernate")
+  systemctl hibernate
+  ;;
+" [L]ock")
+  swaylock
+  ;;
+" L[o]gout")
   hyprctl dispatch exit
   ;;
 esac
