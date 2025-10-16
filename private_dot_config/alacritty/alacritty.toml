@@ -16,3 +16,15 @@ style = "Italic"
 [font.normal]
 family = "Hack Nerd Font Mono"
 style = "Regular"
+
+[window]
+opacity = 0.88
+blur = true
+
+[colors.primary]
+background = "#16161d"
+foreground = "#fdf6e3"
+
+[colors.cursor]
+text = "#16161d"
+cursor = "#009CA6"
