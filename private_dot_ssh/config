@@ -180,3 +180,8 @@ Host ash-nazg_ext
   Compression yes
   ForwardX11 yes
   IdentityFile	~/.ssh/id_ed25519_ash-nazg
+# ARCHER2 course
+Host snpo-course
+   User ta213renn1
+   Hostname login.archer2.ac.uk
+   IdentityFile ~/.ssh/id_ed25519_safe
