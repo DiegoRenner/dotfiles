@@ -82,6 +82,7 @@ alias zsc="sudo zscaler-config"
 alias wlion="clion -Dawt.toolkit.name=WLToolkit"
 alias pdfp='GDK_BACKEND=x11 pdfpc'
 alias rdsk="rdesktop typhoon.ae.ic.ac.uk -u dbr25 -p '$(pass studying/uni/imperial)' -k en-gb -z -r clipboard:PRIMARYCLIPBOARD, -g 2560x1550@165"
+alias cache-aliases="/home/diego/.scripts/list_aliases.sh > /home/diego/.config/fish/alias_cache.txt"
 
 {{ if eq .chezmoi.osRelease.id "nixos" }}
 alias conf="sudo nvim /etc/nixos/configuration.nix"
