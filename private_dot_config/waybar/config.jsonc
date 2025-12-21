@@ -7,7 +7,8 @@
   "spacing": 4, // Gaps between modules (4px)
   // Choose the order of the modules
   "output": [
-    "eDP-1"
+    "eDP-1",
+    "eDP-2"
   ],
   "modules-left": [
     "hyprland/workspaces",
