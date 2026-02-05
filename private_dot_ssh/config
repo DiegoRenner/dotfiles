@@ -193,3 +193,7 @@ Host snpo-course-gpu
    User ta217renn1
    Hostname login.archer2.ac.uk
    IdentityFile ~/.ssh/id_ed25519_safe
+Host ic_hpc
+   User dbr25
+   Hostname login.cx3.hpc.imperial.ac.uk
+   IdentityFile ~/.ssh/id_ed25519_ic_hpc
