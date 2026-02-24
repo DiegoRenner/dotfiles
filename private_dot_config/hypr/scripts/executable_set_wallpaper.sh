@@ -53,14 +53,14 @@ echo "Current swww outputs:" >> "$LOGFILE"
 swww query >> "$LOGFILE" 2>&1
 
 # Default wallpaper for all monitors
-echo "Setting default wallpaper: /home/diego/downloads/8642900.gif" >> "$LOGFILE"
-swww img /home/diego/downloads/8642900.gif >> "$LOGFILE" 2>&1
+echo "Setting default wallpaper: /home/diego/.config/hypr/wallpapers/8642900.gif" >> "$LOGFILE"
+swww img /home/diego/.config/hypr/wallpapers/8642900.gif >> "$LOGFILE" 2>&1
 
 if [ -n "$INTERNAL_MONITOR" ]; then
   echo "Setting wallpaper for internal monitor: $INTERNAL_MONITOR" >> "$LOGFILE"
   # Use a slight delay here to ensure the previous command doesn't block
   sleep 0.2
-  swww img -o "$INTERNAL_MONITOR" /home/diego/downloads/2825704.gif >> "$LOGFILE" 2>&1
+  swww img -o "$INTERNAL_MONITOR" /home/diego/.config/hypr/wallpapers/2825704.gif >> "$LOGFILE" 2>&1
 fi
 
 echo "--- $(date) Wallpaper script finished ---" >> "$LOGFILE"
