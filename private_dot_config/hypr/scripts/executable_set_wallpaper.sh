@@ -8,12 +8,6 @@ echo "--- $(date) Wallpaper script started ---" > "$LOGFILE"
 if ! pgrep -x "swww-daemon" >/dev/null; then
   echo "Starting swww-daemon..." >> "$LOGFILE"
   swww-daemon &
-  
-  # Wait for the daemon to initialize
-  while ! swww query >/dev/null 2>&1; do
-    echo "Waiting for swww-daemon to initialize..." >> "$LOGFILE"
-    sleep 0.5
-  done
 fi
 
 # Function to get the internal monitor name
@@ -28,7 +22,7 @@ INTERNAL_MONITOR=$(get_internal_monitor)
 
 while [ -z "$INTERNAL_MONITOR" ] && [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
   echo "Internal monitor not found by hyprctl. Retrying ($RETRY_COUNT/$MAX_RETRIES)..." >> "$LOGFILE"
-  sleep 0.5
+  sleep 1
   INTERNAL_MONITOR=$(get_internal_monitor)
   ((RETRY_COUNT++))
 done
@@ -39,13 +33,24 @@ else
   echo "Found internal monitor: $INTERNAL_MONITOR" >> "$LOGFILE"
 fi
 
-# Wait for swww to see the monitors
+# Explicitly wait for swww-daemon to be responsive
+while ! swww query >/dev/null 2>&1; do
+  echo "Waiting for swww-daemon to initialize..." >> "$LOGFILE"
+  sleep 0.5
+done
+
+# Wait for swww to see the specific internal monitor output
+# This is crucial in dedicated mode where it might take longer for swww to register the output
 RETRY_COUNT=0
 while ! swww query | grep -q "$INTERNAL_MONITOR" && [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
   echo "Waiting for swww to detect output: $INTERNAL_MONITOR ($RETRY_COUNT/$MAX_RETRIES)..." >> "$LOGFILE"
-  sleep 0.5
+  sleep 1
   ((RETRY_COUNT++))
 done
+
+# Final check of what swww sees
+echo "Current swww outputs:" >> "$LOGFILE"
+swww query >> "$LOGFILE" 2>&1
 
 # Default wallpaper for all monitors
 echo "Setting default wallpaper: /home/diego/downloads/8642900.gif" >> "$LOGFILE"
@@ -53,6 +58,8 @@ swww img /home/diego/downloads/8642900.gif >> "$LOGFILE" 2>&1
 
 if [ -n "$INTERNAL_MONITOR" ]; then
   echo "Setting wallpaper for internal monitor: $INTERNAL_MONITOR" >> "$LOGFILE"
+  # Use a slight delay here to ensure the previous command doesn't block
+  sleep 0.2
   swww img -o "$INTERNAL_MONITOR" /home/diego/downloads/2825704.gif >> "$LOGFILE" 2>&1
 fi
 
