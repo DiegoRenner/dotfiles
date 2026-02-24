@@ -18,7 +18,7 @@ family = "Hack Nerd Font Mono"
 style = "Regular"
 
 [window]
-opacity = 0.88
+opacity = 0.68
 blur = true
 
 [colors.primary]
