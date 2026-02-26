@@ -188,7 +188,9 @@ Host archer2
    User dbr25
    Hostname login.archer2.ac.uk
    IdentityFile ~/.ssh/id_ed25519_safe
+   SetEnv TERM=xterm-256color
 Host ic_hpc
    User dbr25
    Hostname login.cx3.hpc.imperial.ac.uk
    IdentityFile ~/.ssh/id_ed25519_ic_hpc
+   SetEnv TERM=xterm-256color
