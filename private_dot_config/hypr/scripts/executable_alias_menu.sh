@@ -7,9 +7,10 @@ if [ -z "$1" ]; then
     cat "$CACHE"
 else
     # Selection made: Launch it via Hyprland's dispatcher
-    hyprctl dispatch exec -- fish -c "$1 > /dev/null 2>&1"
+    # We use hyprctl dispatch exec to avoid hanging Rofi
+    hyprctl dispatch exec -- fish -c "$1"
     
-    # Force rofi to close
+    # Force rofi to close (sometimes needed in script mode)
     killall rofi
     exit 0
 fi
