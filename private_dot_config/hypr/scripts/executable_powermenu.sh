@@ -48,25 +48,27 @@ case $exit_code in
   ;;
 esac
 
-echo $chosen
-# Execute the command based on the choice
-case "$chosen" in
-" [S]hutdown")
-  systemctl poweroff
-  ;;
-" [R]eboot")
-  systemctl reboot
-  ;;
-" S[u]spend")
-  systemctl suspend
-  ;;
-" [H]ibernate")
-  systemctl hibernate
-  ;;
-" [L]ock")
-  swaylock
-  ;;
-" L[o]gout")
-  hyprctl dispatch exit
-  ;;
-esac
+if [ $exit_code -lt 1 ]; then
+  echo $chosen
+  # Execute the command based on the choice
+  case "$chosen" in
+  " [S]hutdown")
+    systemctl poweroff
+    ;;
+  " [R]eboot")
+    systemctl reboot
+    ;;
+  " S[u]spend")
+    systemctl suspend
+    ;;
+  " [H]ibernate")
+    systemctl hibernate
+    ;;
+  " [L]ock")
+    swaylock
+    ;;
+  " L[o]gout")
+    hyprctl dispatch exit
+    ;;
+  esac
+fi
