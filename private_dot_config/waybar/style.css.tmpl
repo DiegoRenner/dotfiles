@@ -1,0 +1,80 @@
+/* Modern Segmented Block Design - Centralized Template */
+
+* {
+    font-family: "Hack Nerd Font Mono", "Roboto", sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: rgba({{ .colors.bg_rgb }}, {{ .colors.opacity }}); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: {{ .colors.fg }};
+}
+
+/* Module base style */
+#workspaces,
+#window,
+#clock,
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#idle_inhibitor,
+#power-profiles-daemon,
+#mpd,
+#custom-power {
+    padding: 0px 10px;
+    margin: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent;
+}
+
+#workspaces button {
+    padding: 0 12px;
+    color: #949494;
+    transition: none;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+#workspaces button.active {
+    color: {{ .colors.accent }};
+    background: rgba(0, 156, 166, 0.1);
+    border-bottom: 2px solid {{ .colors.accent }};
+}
+
+/* Module Colors aligned with Centralized Palette */
+#pulseaudio { color: {{ .colors.yellow }}; }
+#network { color: {{ .colors.blue }}; }
+#cpu { color: {{ .colors.accent }}; }
+#memory { color: {{ .colors.magenta }}; }
+#temperature { color: {{ .colors.orange }}; }
+#backlight { color: {{ .colors.yellow }}; }
+#clock { color: {{ .colors.accent }}; font-weight: bold; }
+#battery { color: {{ .colors.fg }}; }
+#battery.charging { color: {{ .colors.green }}; }
+#battery.critical:not(.charging) {
+    color: {{ .colors.red }};
+    animation: blink 0.5s steps(12) infinite alternate;
+}
+
+#custom-power {
+    color: {{ .colors.red }};
+}
+
+@keyframes blink {
+    to {
+        background-color: {{ .colors.red }};
+        color: #ffffff;
+    }
+}
