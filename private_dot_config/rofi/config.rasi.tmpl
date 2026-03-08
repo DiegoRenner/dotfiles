@@ -1,5 +1,5 @@
 /**
- * ROFI SQUARED THEME - Readability Fix
+ * ROFI SQUARED THEME - Stability Fix
  **/
 
 * {
@@ -56,9 +56,9 @@ entry {
 
 listview {
     padding:    5px 0;
-    lines:      10;
+    lines:      10; /* Fixed height to prevent jumping */
     columns:    1;
-    fixed-height:   false;
+    fixed-height:   true; /* Launch at full height */
 }
 
 element {
@@ -68,7 +68,6 @@ element {
     text-color: @fg0;
 }
 
-/* Fix for unreadable alternate rows */
 element normal normal, element alternate normal {
     background-color: transparent;
     text-color: @fg0;

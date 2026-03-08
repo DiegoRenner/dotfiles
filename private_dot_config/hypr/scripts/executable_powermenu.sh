@@ -13,8 +13,9 @@ options=" [S]hutdown\n [R]eboot\n S[u]spend\n [H]ibernate\n [L]oc
 # -mesg: Displays the options string as a message.
 # -kb-custom-[n]: Binds a key to a custom action. When the key is pressed,
 #                 rofi exits with a return code of 10 + n.
-#                 For example, -kb-custom-1 (bound to 's') exits with code 10.
+# Corresponds to -kb-custom-1 (s) exits with code 10.
 chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu" \
+  -theme-str 'window { width: 300px; } listview { lines: 6; fixed-height: false; }' \
   -kb-custom-1 "s,S" \
   -kb-custom-2 "r,R" \
   -kb-custom-3 "u,U" \
