@@ -1,4 +1,4 @@
-/* Modern Pill Design for Waybar - Exact Fish Theme Color Match */
+/* Modern Segmented Block Design - Exact Alacritty Match (0.68 opacity) */
 
 * {
     font-family: "Hack Nerd Font Mono", "Roboto", sans-serif;
@@ -8,11 +8,13 @@
 }
 
 window#waybar {
-    background-color: transparent;
+    /* Matches Alacritty background (#16161d) and opacity (0.68) */
+    background-color: rgba(22, 22, 29, 0.68); 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: #fdf6e3;
 }
 
-/* Base style for all module groups (Pills) */
+/* Module base style */
 #workspaces,
 #window,
 #clock,
@@ -29,63 +31,51 @@ window#waybar {
 #power-profiles-daemon,
 #mpd,
 #custom-power {
-    background-color: #16161d; /* Matches Alacritty/Fish background */
-    padding: 0px 12px;
-    margin: 4px 3px;
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    min-height: 22px;
+    padding: 0px 10px;
+    margin: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: transparent; /* Inherit bar transparency */
 }
 
-/* Ensure the window module doesn't collapse when empty */
-#window {
-    min-width: 10px;
-}
-
-/* Workspaces specific style */
+/* Ensure workspaces look clean */
 #workspaces {
-    padding: 0 5px;
+    padding: 0;
 }
 
 #workspaces button {
-    padding: 0 8px;
+    padding: 0 12px;
     color: #949494;
     transition: none;
+    border-bottom: 2px solid transparent;
 }
 
 #workspaces button:hover {
     background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
 }
 
 #workspaces button.active {
-    color: #009CA6; /* fish_color_command */
+    color: #009CA6;
+    background: rgba(0, 156, 166, 0.1);
     border-bottom: 2px solid #009CA6;
 }
 
-#workspaces button.urgent {
-    color: #D50032; /* fish_color_error */
-}
-
-/* Module Colors aligned with Fish Theme HEX codes */
-#pulseaudio { color: #DAAA00; }   /* fish_color_param (Yellow) */
-#network { color: #00afff; }      /* fish_color_redirection (Blue) */
-#cpu { color: #009CA6; }          /* fish_color_command (Cyan Accent) */
-#memory { color: #C6007E; }       /* fish_color_user (Magenta) */
-#temperature { color: #D86018; }  /* fish_color_host (Orange) */
-#backlight { color: #DAAA00; }    /* fish_color_param (Yellow) */
+/* Module Colors aligned with Fish Theme */
+#pulseaudio { color: #DAAA00; }
+#network { color: #00afff; }
+#cpu { color: #009CA6; }
+#memory { color: #C6007E; }
+#temperature { color: #D86018; }
+#backlight { color: #DAAA00; }
 #clock { color: #009CA6; font-weight: bold; }
 #battery { color: #fdf6e3; }
-#battery.charging { color: #008000; } /* fish_color_cwd (Green) */
+#battery.charging { color: #008000; }
 #battery.critical:not(.charging) {
-    color: #D50032; /* fish_color_error (Bright Red) */
+    color: #D50032;
     animation: blink 0.5s steps(12) infinite alternate;
 }
 
 #custom-power {
-    color: #D50032; /* fish_color_error */
-    padding-right: 15px;
-    padding-left: 15px;
+    color: #D50032;
 }
 
 @keyframes blink {
