@@ -3,6 +3,7 @@ colors:
   bg_rgb: "22, 22, 29"
   fg: "#fdf6e3"
   accent: "#009CA6"
+  accent_rgb: "0, 156, 166"
   red: "#D50032"
   yellow: "#DAAA00"
   blue: "#00afff"

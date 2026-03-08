@@ -1,0 +1,93 @@
+/**
+ * Modern Clean Rofi Theme - Wide & Compact
+ **/
+
+configuration {
+    modi:                       "drun,run,window";
+    show-icons:                 true;
+    display-drun:               "";
+    display-run:                "";
+    display-window:             "";
+    drun-display-format:        "{name}";
+}
+
+* {
+    font:                        "Hack Nerd Font Mono 12";
+    bg-base:                     rgba({{ .colors.bg_rgb }}, {{ .colors.opacity }});
+    bg-selected:                 rgba({{ .colors.accent_rgb }}, 0.2);
+    accent:                      {{ .colors.accent }};
+    fg-base:                     {{ .colors.fg }};
+    border-col:                  {{ .colors.accent }};
+}
+
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       800px; /* Wider window */
+    border:                      1px solid;
+    border-color:                @border-col;
+    background-color:            @bg-base;
+}
+
+mainbox {
+    padding:                     10px; /* Reduced main padding */
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview" ];
+}
+
+inputbar {
+    spacing:                     5px;
+    padding:                     5px; /* Reduced input padding */
+    background-color:            transparent;
+    text-color:                  @fg-base;
+    children:                    [ "prompt", "entry" ];
+}
+
+prompt {
+    background-color:            transparent;
+    text-color:                  @accent;
+}
+
+entry {
+    background-color:            transparent;
+    text-color:                  inherit;
+    placeholder:                 "Search...";
+}
+
+listview {
+    columns:                     1;
+    lines:                       10;
+    fixed-height:                false;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    spacing:                     2px; /* Reduced list spacing */
+    background-color:            transparent;
+    text-color:                  @fg-base;
+}
+
+element {
+    padding:                     4px 10px; /* Reduced element padding (tallness) */
+    background-color:            transparent;
+    text-color:                  @fg-base;
+}
+
+element selected.normal {
+    background-color:            @bg-selected;
+    text-color:                  @accent;
+    border:                      0px 0px 0px 4px solid;
+    border-color:                @accent;
+}
+
+element-icon {
+    size:                        20px; /* Slightly smaller icons for compactness */
+    background-color:            transparent;
+}
+
+element-text {
+    vertical-align:              0.5;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
