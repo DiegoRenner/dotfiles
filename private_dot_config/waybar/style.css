@@ -1,4 +1,4 @@
-/* Modern Pill Design for Waybar */
+/* Modern Pill Design for Waybar - Alacritty Color Match */
 
 * {
     font-family: "Hack Nerd Font Mono", "Roboto", sans-serif;
@@ -8,7 +8,7 @@
 }
 
 window#waybar {
-    background-color: transparent; /* Full transparency for the bar itself */
+    background-color: transparent;
     color: #fdf6e3;
 }
 
@@ -30,10 +30,16 @@ window#waybar {
 #mpd,
 #custom-power {
     background-color: #16161d; /* Matches your Alacritty background */
-    padding: 2px 12px;
+    padding: 0px 12px;
     margin: 4px 3px;
-    border-radius: 15px; /* Rounded pill shape */
+    border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 22px;
+}
+
+/* Ensure the window module doesn't collapse when empty */
+#window {
+    min-width: 10px;
 }
 
 /* Workspaces specific style */
@@ -44,7 +50,7 @@ window#waybar {
 #workspaces button {
     padding: 0 8px;
     color: #949494;
-    transition: all 0.3s ease;
+    transition: none;
 }
 
 #workspaces button:hover {
@@ -53,29 +59,30 @@ window#waybar {
 }
 
 #workspaces button.active {
-    color: #009CA6; /* Your accent color */
+    color: #009CA6; /* Your Alacritty cursor/accent color */
     border-bottom: 2px solid #009CA6;
 }
 
 #workspaces button.urgent {
-    color: #D50032;
+    color: #D50032; /* Alacritty bright red */
 }
 
-/* Individual Pill Colors/Accents */
-#pulseaudio { color: #DAAA00; }
-#network { color: #2980b9; }
-#cpu { color: #2ecc71; }
+/* Individual Pill Colors/Accents based on Alacritty */
+#pulseaudio { color: #DAAA00; } /* Alacritty yellow */
+#network { color: #2980b9; } /* Alacritty blue */
+#cpu { color: #009CA6; } /* Matching your accent */
 #memory { color: #9b59b6; }
-#temperature { color: #f0932b; }
+#temperature { color: #D86018; } /* Alacritty orange */
 #battery { color: #ffffff; }
-#battery.charging { color: #26A65B; }
+#battery.charging { color: #009CA6; }
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: #D50032;
     animation: blink 0.5s steps(12) infinite alternate;
 }
 
 #clock {
     font-weight: bold;
+    color: #009CA6;
 }
 
 #custom-power {
@@ -86,7 +93,7 @@ window#waybar {
 
 @keyframes blink {
     to {
-        background-color: #f53c3c;
+        background-color: #D50032;
         color: #ffffff;
     }
 }
