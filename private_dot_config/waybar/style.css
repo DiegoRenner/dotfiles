@@ -1,4 +1,4 @@
-/* Modern Pill Design for Waybar - Alacritty Color Match */
+/* Modern Pill Design for Waybar - Exact Fish Theme Color Match */
 
 * {
     font-family: "Hack Nerd Font Mono", "Roboto", sans-serif;
@@ -29,7 +29,7 @@ window#waybar {
 #power-profiles-daemon,
 #mpd,
 #custom-power {
-    background-color: #16161d; /* Matches your Alacritty background */
+    background-color: #16161d; /* Matches Alacritty/Fish background */
     padding: 0px 12px;
     margin: 4px 3px;
     border-radius: 15px;
@@ -59,34 +59,31 @@ window#waybar {
 }
 
 #workspaces button.active {
-    color: #009CA6; /* Your Alacritty cursor/accent color */
+    color: #009CA6; /* fish_color_command */
     border-bottom: 2px solid #009CA6;
 }
 
 #workspaces button.urgent {
-    color: #D50032; /* Alacritty bright red */
+    color: #D50032; /* fish_color_error */
 }
 
-/* Individual Pill Colors/Accents based on Alacritty */
-#pulseaudio { color: #DAAA00; } /* Alacritty yellow */
-#network { color: #2980b9; } /* Alacritty blue */
-#cpu { color: #009CA6; } /* Matching your accent */
-#memory { color: #9b59b6; }
-#temperature { color: #D86018; } /* Alacritty orange */
-#battery { color: #ffffff; }
-#battery.charging { color: #009CA6; }
+/* Module Colors aligned with Fish Theme HEX codes */
+#pulseaudio { color: #DAAA00; }   /* fish_color_param (Yellow) */
+#network { color: #00afff; }      /* fish_color_redirection (Blue) */
+#cpu { color: #009CA6; }          /* fish_color_command (Cyan Accent) */
+#memory { color: #C6007E; }       /* fish_color_user (Magenta) */
+#temperature { color: #D86018; }  /* fish_color_host (Orange) */
+#backlight { color: #DAAA00; }    /* fish_color_param (Yellow) */
+#clock { color: #009CA6; font-weight: bold; }
+#battery { color: #fdf6e3; }
+#battery.charging { color: #008000; } /* fish_color_cwd (Green) */
 #battery.critical:not(.charging) {
-    color: #D50032;
+    color: #D50032; /* fish_color_error (Bright Red) */
     animation: blink 0.5s steps(12) infinite alternate;
 }
 
-#clock {
-    font-weight: bold;
-    color: #009CA6;
-}
-
 #custom-power {
-    color: #D50032;
+    color: #D50032; /* fish_color_error */
     padding-right: 15px;
     padding-left: 15px;
 }
