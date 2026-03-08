@@ -1,93 +1,90 @@
 /**
- * Modern Clean Rofi Theme - Wide & Compact
+ * ROFI SQUARED THEME - Readability Fix
  **/
 
-configuration {
-    modi:                       "drun,run,window";
-    show-icons:                 true;
-    display-drun:               "";
-    display-run:                "";
-    display-window:             "";
-    drun-display-format:        "{name}";
-}
-
 * {
-    font:                        "Hack Nerd Font Mono 12";
-    bg-base:                     rgba({{ .colors.bg_rgb }}, {{ .colors.opacity }});
-    bg-selected:                 rgba({{ .colors.accent_rgb }}, 0.2);
-    accent:                      {{ .colors.accent }};
-    fg-base:                     {{ .colors.fg }};
-    border-col:                  {{ .colors.accent }};
+    font:   "Hack Nerd Font Mono 12";
+
+    bg0:     rgba({{ .colors.bg_rgb }}, {{ .colors.opacity }});
+    bg1:     rgba({{ .colors.bg_rgb }}, 0.5);
+    fg0:     {{ .colors.fg }};
+
+    accent-color:     {{ .colors.accent }};
+    urgent-color:     {{ .colors.red }};
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
 }
 
 window {
-    transparency:                "real";
-    location:                    center;
-    anchor:                      center;
-    fullscreen:                  false;
-    width:                       800px; /* Wider window */
-    border:                      1px solid;
-    border-color:                @border-col;
-    background-color:            @bg-base;
+    location:   center;
+    anchor:     center;
+    width:      600;
+
+    background-color:   @bg0;
+    border:             1px solid;
+    border-color:       @accent-color;
 }
 
 mainbox {
-    padding:                     10px; /* Reduced main padding */
-    background-color:            transparent;
-    children:                    [ "inputbar", "listview" ];
+    padding:    10px;
+    children:   [ inputbar, listview ];
 }
 
 inputbar {
-    spacing:                     5px;
-    padding:                     5px; /* Reduced input padding */
-    background-color:            transparent;
-    text-color:                  @fg-base;
-    children:                    [ "prompt", "entry" ];
+    spacing:    10px;
+    padding:    10px;
+    background-color:   @bg1;
+}
+
+prompt, entry, element-icon, element-text {
+    vertical-align: 0.5;
 }
 
 prompt {
-    background-color:            transparent;
-    text-color:                  @accent;
+    text-color: @accent-color;
 }
 
 entry {
-    background-color:            transparent;
-    text-color:                  inherit;
-    placeholder:                 "Search...";
+    placeholder: "Search...";
+    placeholder-color: rgba(253, 246, 227, 0.3);
 }
 
 listview {
-    columns:                     1;
-    lines:                       10;
-    fixed-height:                false;
-    cycle:                       true;
-    dynamic:                     true;
-    scrollbar:                   false;
-    spacing:                     2px; /* Reduced list spacing */
-    background-color:            transparent;
-    text-color:                  @fg-base;
+    padding:    5px 0;
+    lines:      10;
+    columns:    1;
+    fixed-height:   false;
 }
 
 element {
-    padding:                     4px 10px; /* Reduced element padding (tallness) */
-    background-color:            transparent;
-    text-color:                  @fg-base;
+    padding:    8px 12px;
+    spacing:    10px;
+    background-color: transparent;
+    text-color: @fg0;
 }
 
-element selected.normal {
-    background-color:            @bg-selected;
-    text-color:                  @accent;
-    border:                      0px 0px 0px 4px solid;
-    border-color:                @accent;
+/* Fix for unreadable alternate rows */
+element normal normal, element alternate normal {
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+element selected normal, element selected active {
+    background-color:   rgba({{ .colors.accent_rgb }}, 0.2);
+    text-color:         @accent-color;
+    border:             0px 0px 0px 4px solid;
+    border-color:       @accent-color;
 }
 
 element-icon {
-    size:                        20px; /* Slightly smaller icons for compactness */
-    background-color:            transparent;
+    size:   1.2em;
 }
 
 element-text {
-    vertical-align:              0.5;
-    background-color:            transparent;
-    text-color:                  inherit;
+    text-color: inherit;
 }
