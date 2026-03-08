@@ -1,3 +1,12 @@
+# Set unified colors from chezmoi palette
+set -g fish_color_command {{ .colors.accent | trimPrefix "#" }}
+set -g fish_color_param {{ .colors.yellow | trimPrefix "#" }}
+set -g fish_color_error {{ .colors.red | trimPrefix "#" }}
+set -g fish_color_redirection {{ .colors.blue | trimPrefix "#" }}
+set -g fish_color_user {{ .colors.magenta | trimPrefix "#" }}
+set -g fish_color_host {{ .colors.orange | trimPrefix "#" }}
+set -g fish_color_cwd {{ .colors.green | trimPrefix "#" }}
+
 # set env vars
 set -gx PATH "$PATH:/home/diego/.scripts"
 set -gx PATH "$PATH:/opt/depot_tools"
