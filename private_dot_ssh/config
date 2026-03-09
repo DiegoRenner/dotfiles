@@ -192,6 +192,8 @@ Host archer2
    ControlMaster auto
    ControlPath ~/.ssh/control-%r@%h:%p
    ControlPersist yes
+   Compression yes
+   ForwardX11 yes
 Host ic_hpc
    User dbr25
    Hostname login.cx3.hpc.imperial.ac.uk
