@@ -108,7 +108,16 @@ alias assume="export GRANTED_ALIAS_CONFIGURED="true"; /run/current-system/sw/bin
 zoxide init fish | source
 
 
-# Gemini/Copilot Monitor
-alias ms="bash -c "~/.scripts/monitor_gemini.sh &""
-alias mq="pkill -f monitor_gemini.sh"
-alias mst="ps aux | grep monitor_gemini.sh | grep -v grep"
+
+# Gemini/Copilot Monitor Functions
+function ms
+    bash -c "~/.scripts/monitor_gemini.sh &"
+end
+
+function mq
+    pkill -f monitor_gemini.sh
+end
+
+function mst
+    ps aux | grep monitor_gemini.sh | grep -v grep
+end
