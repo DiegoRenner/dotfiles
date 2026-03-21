@@ -107,3 +107,8 @@ alias assume="export GRANTED_ALIAS_CONFIGURED="true"; /run/current-system/sw/bin
 # fzf recent dirs
 zoxide init fish | source
 
+
+# Gemini/Copilot Monitor
+alias ms="~/.scripts/monitor_gemini.sh &"
+alias mq="killall monitor_gemini.sh"
+alias mst="ps aux | grep monitor_gemini.sh | grep -v grep"
