@@ -110,14 +110,14 @@ zoxide init fish | source
 
 
 # Gemini/Copilot Monitor Functions
-function ms
+function mo
     bash -c "~/.scripts/monitor_gemini.sh &"
 end
 
-function mq
+function ms
     pkill -f monitor_gemini.sh
 end
 
-function mo
+function mq
     ps aux | grep monitor_gemini.sh | grep -v grep
 end
