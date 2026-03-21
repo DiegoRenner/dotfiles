@@ -199,3 +199,13 @@ Host ic_hpc
    Hostname login.cx3.hpc.imperial.ac.uk
    IdentityFile ~/.ssh/id_ed25519_ic_hpc
    SetEnv TERM=xterm-256color
+Host stuttgart
+  Hostname  hunter-login05.hww.hlrs.de
+  User            zihdrenn
+  IdentityFile	~/.ssh/id_ed25519_stuttgart
+  ProxyCommand 	ssh typhoon -W %h:%p
+Host stuttgart_init
+  Hostname  initial.hww.hlrs.de
+  User            zihdrenn
+  IdentityFile	~/.ssh/id_ed25519_stuttgart
+  ProxyJump typhoon
