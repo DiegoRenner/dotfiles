@@ -109,6 +109,6 @@ zoxide init fish | source
 
 
 # Gemini/Copilot Monitor
-alias ms="~/.scripts/monitor_gemini.sh &"
-alias mq="killall monitor_gemini.sh"
+alias ms="bash -c "~/.scripts/monitor_gemini.sh &""
+alias mq="pkill -f monitor_gemini.sh"
 alias mst="ps aux | grep monitor_gemini.sh | grep -v grep"
