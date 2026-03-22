@@ -6,8 +6,8 @@ CHECK_INTERVAL=0.5
 
 # Piper Configuration
 PIPER_BIN="/opt/piper-tts/piper"
-VOICE_MODEL="/home/diego/downloads/en_US-lessac-high.onnx"
-VOICE_CONFIG="/home/diego/downloads/en_US-lessac-high.onnx.json"
+VOICE_MODEL="/home/diego/.scripts/piper-voices/en_US-lessac-high.onnx"
+VOICE_CONFIG="/home/diego/.scripts/piper-voices/en_US-lessac-high.onnx.json"
 
 # Gemini Strings
 G_WORKING="Working…"
@@ -26,53 +26,63 @@ declare -A last_titles
 
 # Function to play sound and speak the title using Piper
 speak_title() {
-    local title="$1"
-    local prefix="$2"
+    local last_title="$1"
+    local current_title="$2"
+    local prefix="$3"
+    local desktop="$4"
     
-    # Clean up title for speech:
-    # 1. Replace parentheses with spaces so project tags are read clearly
-    # 2. Remove "Working" and "..."
-    # 3. Use perl to strip all remaining non-ASCII characters (emojis, ✦, 🤖, etc.)
-    local clean_title=$(echo "$title" | sed 's/(/ /g; s/)/ /g; s/Working//g; s/…//g' | perl -pe 's/[^\x00-\x7F]+//g')
+    # Extract project name from last_title (e.g., "bps")
+    local project=$(echo "$last_title" | grep -oP "\\(\K[^\\)]+" || echo "$current_title" | grep -oP "\\(\K[^\\)]+" || echo "")
+    
+    # Construct the message
+    local message="$prefix"
+    if [ -n "$project" ]; then
+        message="$message $project"
+    fi
+    if [ -n "$desktop" ]; then
+        message="$message on desktop $desktop"
+    fi
     
     # Play notification sound
     paplay "$SOUND_FILE" 2>/dev/null
     
     # Speak using Piper and mpv
-    (echo "$prefix $clean_title" | "$PIPER_BIN" -m "$VOICE_MODEL" -c "$VOICE_CONFIG" --output-file - | mpv - &>/dev/null) &
+    (echo "$message" | "$PIPER_BIN" -m "$VOICE_MODEL" -c "$VOICE_CONFIG" --output-file - | mpv - &>/dev/null) &
 }
 
 while true; do
-    mapfile -t windows < <(hyprctl clients -j | jq -c ".[] | select(.class == \"Alacritty\" and .title != null)")
+    # Get all Alacritty windows with titles and workspace IDs
+    mapfile -t windows < <(hyprctl clients -j | jq -c ".[] | select(.class == \"Alacritty\" and .title != null) | {address: .address, title: .title, workspace_id: .workspace.id}")
 
     for win in "${windows[@]}"; do
         address=$(echo "$win" | jq -r ".address")
         current_title=$(echo "$win" | jq -r ".title")
+        workspace_id=$(echo "$win" | jq -r ".workspace_id")
         last_title="${last_titles[$address]}"
         
         if [ "$current_title" != "$last_title" ]; then
             if [ -n "$last_title" ]; then
                 # --- Gemini Logic ---
                 if [[ "$last_title" == *"$G_WORKING"* ]] && [[ "$current_title" != *"$G_WORKING"* ]]; then
-                    echo "[Gemini] Task finished: $current_title"
-                    speak_title "$current_title" "Gemini finished"
+                    echo "[Gemini] Task finished: $current_title (Desktop $workspace_id)"
+                    speak_title "$last_title" "$current_title" "Gemini finished" "$workspace_id"
                 
                 elif [[ "$current_title" == *"$G_ACTION"* ]] && [[ "$last_title" != *"$G_ACTION"* ]]; then
-                    echo "[Gemini] Action required: $current_title"
-                    speak_title "$current_title" "Gemini needs action"
+                    echo "[Gemini] Action required: $current_title (Desktop $workspace_id)"
+                    speak_title "$last_title" "$current_title" "Gemini needs action" "$workspace_id"
                 
                 elif [[ "$current_title" == *"$G_READY"* ]] && [[ "$last_title" != *"$G_READY"* ]]; then
-                    echo "[Gemini] Ready: $current_title"
-                    speak_title "$current_title" "Gemini is ready"
+                    echo "[Gemini] Ready: $current_title (Desktop $workspace_id)"
+                    speak_title "$last_title" "$current_title" "Gemini is ready" "$workspace_id"
 
                 # --- Copilot Logic ---
                 elif [[ "$current_title" == *"$C_ROBOT"* ]] && [[ "$last_title" != *"$C_ROBOT"* ]]; then
-                    echo "[Copilot] Started: $current_title"
-                    speak_title "$current_title" "Copilot started"
+                    echo "[Copilot] Started: $current_title (Desktop $workspace_id)"
+                    speak_title "$last_title" "$current_title" "Copilot started" "$workspace_id"
                 
                 elif [[ "$last_title" == *"$C_ROBOT"* ]] && [[ "$current_title" != *"$C_ROBOT"* ]]; then
-                    echo "[Copilot] Finished: $current_title"
-                    speak_title "$current_title" "Copilot finished"
+                    echo "[Copilot] Finished: $current_title (Desktop $workspace_id)"
+                    speak_title "$last_title" "$current_title" "Copilot finished" "$workspace_id"
                 
                 elif [[ "$current_title" == *"$C_ROBOT"* ]] && [[ "$last_title" == *"$C_ROBOT"* ]]; then
                     is_prompt=false
@@ -81,11 +91,11 @@ while true; do
                     done
 
                     if [ "$is_prompt" = true ]; then
-                        echo "[Copilot] PROMPT: $current_title"
-                        speak_title "$current_title" "Copilot prompt"
+                        echo "[Copilot] PROMPT: $current_title (Desktop $workspace_id)"
+                        speak_title "$last_title" "$current_title" "Copilot prompt" "$workspace_id"
                     else
-                        echo "[Copilot] Update: $current_title"
-                        speak_title "$current_title" "Copilot update"
+                        echo "[Copilot] Update: $current_title (Desktop $workspace_id)"
+                        speak_title "$last_title" "$current_title" "Copilot update" "$workspace_id"
                     fi
                 fi
             fi
@@ -93,4 +103,5 @@ while true; do
         fi
     done
     sleep "$CHECK_INTERVAL"
+done
 done
