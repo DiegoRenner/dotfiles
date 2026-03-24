@@ -1,0 +1,4 @@
+#!/bin/bash
+# Reset amd_pstate to clear stuck frequency limits
+echo passive | sudo tee /sys/devices/system/cpu/amd_pstate/status
+echo active | sudo tee /sys/devices/system/cpu/amd_pstate/status
