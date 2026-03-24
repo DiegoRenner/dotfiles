@@ -209,3 +209,9 @@ Host stuttgart_init
   User            zihdrenn
   IdentityFile	~/.ssh/id_ed25519_stuttgart
   ProxyJump typhoon
+Host zih
+  Hostname  login2.barnard.hpc.tu-dresden.de
+  User  dire926i
+  IdentityFile	~/.ssh/id_ed25519_zih
+  Compression yes
+  ForwardX11 yes
