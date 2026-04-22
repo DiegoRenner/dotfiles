@@ -25,6 +25,7 @@ window#waybar {
 #network,
 #pulseaudio,
 #custom-media,
+#custom-recorder,
 #tray,
 #idle_inhibitor,
 #power-profiles-daemon,
@@ -70,6 +71,12 @@ window#waybar {
 
 #custom-power {
     color: {{ .colors.red }};
+}
+
+#custom-recorder {
+    color: {{ .colors.red }};
+    font-weight: bold;
+    animation: blink 1s steps(12) infinite alternate;
 }
 
 @keyframes blink {

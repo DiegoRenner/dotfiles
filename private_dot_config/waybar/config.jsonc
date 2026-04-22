@@ -33,6 +33,7 @@
     "battery",
     "battery#bat2",
     "clock",
+    "custom/recorder",
     "tray",
     "custom/power"
   ],
@@ -235,17 +236,25 @@
     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
   },
   "custom/power": {
-    "format": "⏻",
-    "tooltip": false,
-    "menu": "on-click",
-    "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-    "menu-actions": {
-      "shutdown": "systemctl poweroff",
-      "reboot": "systemctl reboot",
-      "suspend": "systemctl suspend",
-      "hibernate": "systemctl hibernate",
-      "lock": "swaylock",
-      "logout": "hyprctl dispatch exit"
-    }
+  "format": "⏻",
+  "tooltip": false,
+  "menu": "on-click",
+  "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+  "menu-actions": {
+    "shutdown": "systemctl poweroff",
+    "reboot": "systemctl reboot",
+    "suspend": "systemctl suspend",
+    "hibernate": "systemctl hibernate",
+    "lock": "swaylock",
+    "logout": "hyprctl dispatch exit"
   }
-}
+  },
+  "custom/recorder": {
+  "format": "REC 🔴",
+  "interval": 2,
+  "exec": "pgrep -f gpu-screen-recorder",
+  "on-click": "pkill -INT -f gpu-screen-recorder",
+  "tooltip": false
+  }
+  }
+
