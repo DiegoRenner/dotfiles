@@ -170,7 +170,11 @@ misc {
 #############
 # https://wiki.hyprland.org/Configuring/Variables/#input
 input {
+{{- if eq (output "cat" "/etc/machine-id" | trim) .machine_id }}
+    kb_layout = ch
+{{- else }}
     kb_layout = gb
+{{- end }}
     kb_variant =
     kb_model =
     kb_options =
@@ -190,10 +194,16 @@ device {
     name = epic-mouse-v1
     sensitivity = -0.5
 }
+
 device {
     name = at-translated-set-2-keyboard
+{{- if eq (output "cat" "/etc/machine-id" | trim) .machine_id }}
+    kb_layout = ch
+    kb_variant =
+{{- else }}
     kb_layout = gb
     kb_variant = extd
+{{- end }}
 }
 
 ###################
