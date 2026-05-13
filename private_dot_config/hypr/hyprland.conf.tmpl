@@ -412,3 +412,12 @@ exec = gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"  # f
 
 
 
+
+# Float khal calendar
+windowrule {
+    name = khal-calendar
+    match:class = ^(khal_calendar)$
+    float = on
+    center = on
+    size = 800 600
+}

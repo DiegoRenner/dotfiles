@@ -1,0 +1,6 @@
+[Unit]
+Description=vdirsyncer synchronization
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/vdirsyncer sync
