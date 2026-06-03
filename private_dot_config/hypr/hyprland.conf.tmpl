@@ -401,7 +401,7 @@ windowrule = match:class (jetbrains-)(.*), match:float yes, match:title win.*, m
 #windowrule = no_focus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
 windowrule {
     name = block-phantom-windows
-    match:class = ^$
+    match:class = ^(com\.nextcloud\.desktopclient\.nextcloud|Nextcloud)$
     match:title = ^$
     match:xwayland = 1
     match:float = 1
@@ -420,18 +420,19 @@ exec = gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"  # f
 # Float khal calendar
 windowrule {
     name = khal-calendar
-    match:class = ^(khal_calendar)$
+    match:class = ^(com\.nextcloud\.desktopclient\.nextcloud|Nextcloud)$
     float = on
     center = on
     size = 800 600
 }
 
+
 # Float Nextcloud
 windowrule {
     name = nextcloud
-    match:class = (?i).*(nextcloud).*
+    match:class = ^(com\.nextcloud\.desktopclient\.nextcloud|Nextcloud)$
     float = on
-    stay_focused = on
-
+    move = cursor 0 0
+    animation = off
+    dim_around = on
 }
-
