@@ -242,6 +242,7 @@ bind = $mainMod, F, fullscreenstate, 2, -1 #exec, ~/.scripts/toggle_internal_fs.
 bind = $mainMod SHIFT, F, fullscreenstate, -1, 2
 bind = $mainMod, B, exec, killall -SIGUSR1 waybar
 bind = CONTROL SHIFT, B, exec, killall -SIGUSR2 waybar
+bind = $mainMod CONTROL, B, exec, /home/diego/.config/hypr/scripts/toggle_blank_wallpaper.sh
 bind = $mainMod CONTROL, F, exec, hyprctl dispatch focuswindow "$(if [[ $(hyprctl activewindow -j | jq ."floating") == "true" ]]; then echo "tiled"; else echo "floating"; fi;)"
 bind = $mainMod CONTROL SHIFT, F, exec, hyprctl dispatch cyclenext floating
 # move focus with mainMod + vim keys
