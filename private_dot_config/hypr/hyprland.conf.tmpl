@@ -174,10 +174,10 @@ misc {
 #############
 # https://wiki.hyprland.org/Configuring/Variables/#input
 input {
-{{- if eq (output "cat" "/etc/machine-id" | trim) .machine_id }}
-    kb_layout = ch
-{{- else }}
+{{- if contains "ASUS" (output "cat" "/sys/class/dmi/id/product_name") }}
     kb_layout = gb
+{{- else }}
+    kb_layout = ch
 {{- end }}
     kb_variant =
     kb_model =
@@ -201,12 +201,12 @@ device {
 
 device {
     name = at-translated-set-2-keyboard
-{{- if eq (output "cat" "/etc/machine-id" | trim) .machine_id }}
-    kb_layout = ch
-    kb_variant =
-{{- else }}
+{{- if contains "ASUS" (output "cat" "/sys/class/dmi/id/product_name") }}
     kb_layout = gb
     kb_variant = extd
+{{- else }}
+    kb_layout = ch
+    kb_variant =
 {{- end }}
 }
 
