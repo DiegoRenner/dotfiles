@@ -234,7 +234,7 @@ bind = $mainMod, D, exec, /home/diego/.config/hypr/scripts/alias_menu_with_histo
 bind = $mainMod SHIFT, P, pseudo, # dwindle
 bind = $mainMod, O, layoutmsg, togglesplit # dwindle
 bind = $mainMod, P, pin, active
-bind = $mainMod SHIFT, W, exec, brave --force-device-scale-factor=1 --ozone-platform=wayland --disable-features=WaylandWpColorManagerV1;
+bind = $mainMod SHIFT, W, exec, brave --force-device-scale-factor=1 --ozone-platform=wayland --disable-features=WaylandWpColorManagerV1 {{ if .dark_mode }}--force-dark-mode{{ end }};
 bind = $mainMod, W, exec, $terminal -e nmtui 
 bind = $mainMod, V, exec, cliphist list | $menu -dmenu -font "Hack Nerd Font mono 18" | cliphist decode | wl-copy
 bind = $mainMod, F, fullscreenstate, 2, -1 #exec, ~/.scripts/toggle_internal_fs.sh
@@ -412,7 +412,7 @@ windowrule {
 }
 
 
-exec = gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"  # for GTK4 apps
+exec = gsettings set org.gnome.desktop.interface color-scheme "{{ if .dark_mode }}prefer-dark{{ else }}prefer-light{{ end }}"  # for GTK4 apps
 
 
 
