@@ -234,6 +234,7 @@ binde = $mainMod, Q, killactive,
 bind = $mainMod SHIFT, Q, exec, bash -c 'pid=$(hyprctl activewindow -j | jq -r ".pid"); inst=$(hyprctl activewindow -j | jq -r ".appId"); [[ $inst =~ ^dropdown_ ]] || kill -9 $pid'
 bind = $mainMod, M, exit,
 bind = $mainMod, E, exec, $fileManager
+bind = $mainMod SHIFT, E, exec, /home/diego/.config/hypr/scripts/fill_test_account.sh # fill signup form with dated test-account email + password
 bind = $mainMod SHIFT, B, togglefloating,
 bind = $mainMod, D, exec, /home/diego/.config/hypr/scripts/alias_menu_with_history.sh
 bind = $mainMod SHIFT, P, pseudo, # dwindle
