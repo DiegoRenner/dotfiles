@@ -13,6 +13,7 @@ fi
 # Function to get the internal monitor name
 get_internal_monitor() {
   hyprctl monitors -j | jq -r '.[] | select(.description | contains("BOE")) | .name'
+  # hyprctl monitors -j | jq -r '.[] | select(.name | startswith("eDP")) | .name'
 }
 
 # Wait for the internal monitor to be detected by hyprctl
@@ -53,6 +54,8 @@ echo "Current awww outputs:" >>"$LOGFILE"
 awww query >>"$LOGFILE" 2>&1
 
 # Default wallpaper for all monitors
+# echo "Setting default wallpaper: /home/diego/.config/hypr/wallpapers/8642900.gif" >>"$LOGFILE"
+# awww img /home/diego/.config/hypr/wallpapers/8642900.gif >>"$LOGFILE" 2>&1
 echo "Setting default wallpaper: /home/diego/.config/hypr/wallpapers/moon.jpg" >>"$LOGFILE"
 awww img /home/diego/.config/hypr/wallpapers/moon.jpg >>"$LOGFILE" 2>&1
 
@@ -60,6 +63,7 @@ if [ -n "$INTERNAL_MONITOR" ]; then
   echo "Setting wallpaper for internal monitor: $INTERNAL_MONITOR" >>"$LOGFILE"
   # Use a slight delay here to ensure the previous command doesn't block
   sleep 0.2
+  # awww img -o "$INTERNAL_MONITOR" /home/diego/.config/hypr/wallpapers/2825704.gif >>"$LOGFILE" 2>&1
   awww img -o "$INTERNAL_MONITOR" /home/diego/.config/hypr/wallpapers/earth_180.jpg >>"$LOGFILE" 2>&1
 fi
 
