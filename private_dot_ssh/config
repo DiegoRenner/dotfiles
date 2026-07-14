@@ -233,3 +233,15 @@ Host r_zih
   IdentityFile	~/.ssh/id_ed25519_zih
   Compression yes
   ForwardX11 yes
+Host r_zih
+  Hostname  login1.romeo.hpc.tu-dresden.de
+  User  dire926i
+  IdentityFile	~/.ssh/id_ed25519_zih
+  Compression yes
+  ForwardX11 yes
+Host a_zih
+  Hostname  login1.alpha.hpc.tu-dresden.de
+  User  dire926i
+  IdentityFile	~/.ssh/id_ed25519_zih
+  Compression yes
+  ForwardX11 yes
