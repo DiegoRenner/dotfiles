@@ -63,10 +63,16 @@ exec-once = waybar
 # See https://wiki.hyprland.org/Configuring/Environment-variables/
 env = XCURSOR_SIZE,24
 env = HYPRCURSOR_SIZE,24
-env = LIBVA_DRIVER_NAME,nvidia
 env = XDG_SESSION_TYPE,wayland
+# GPU render routing: pin the desktop + VA-API video decode onto the NVIDIA dGPU.
+# Correct on pure-dGPU / MUX machines. On the ASUS TUF (daily-driven in supergfx
+# Hybrid, panel on the AMD iGPU) this keeps the 4060 powered up and drains battery,
+# so skip it there and let the iGPU render. dGPU still used via prime-run / CUDA.
+{{- if not (contains "ASUS" (output "cat" "/sys/class/dmi/id/product_name")) }}
+env = LIBVA_DRIVER_NAME,nvidia
 env = GBM_BACKEND,nvidia-drm
 env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+{{- end }}
 env = XDG_DOWNLOAD_DIR,$HOME/downloads
 env = XDG_TEMPLATES_DIR,$HOME/
 env = XDG_PUBLICSHARE_DIR,$HOME/
