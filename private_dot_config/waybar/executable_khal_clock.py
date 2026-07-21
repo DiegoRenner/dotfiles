@@ -121,10 +121,10 @@ def show_dropdown_alacritty():
     # 15 lines fits perfectly in 320px (20px per line)
     calc_height = 320 + (num_lines - 15) * 20
 
-    # 59 chars needs more than 9px per char depending on font and emojis
-    calc_width = 60 + (max_len * 12)
-    # Cap width between 450px and 1000px
-    calc_width = max(450, min(calc_width, 1000))
+    # Calculate width based on ~9 pixels per character plus padding
+    calc_width = 40 + int(max_len * 9.5)
+    # Cap width between 350px and 900px
+    calc_width = max(350, min(calc_width, 900))
 
     x_pos = 1350
     try:
