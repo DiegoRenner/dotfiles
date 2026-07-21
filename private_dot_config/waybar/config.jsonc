@@ -123,8 +123,7 @@
     "interval": 60,
     "signal": 8,
     "on-click": "/home/diego/.config/waybar/khal_clock.py --toggle",
-    "on-click-right": "alacritty --class khal_calendar -e khal interactive",
-    "on-click-middle": "alacritty --class khal_calendar -e khal interactive",
+    "on-click-double": "alacritty --class khal_calendar -e khal interactive",
     "format": "{text} {icon}",
     "format-icons": [""]
   },
