@@ -22,3 +22,6 @@ longdatetimeformat = %Y-%m-%d %H:%M
 [default]
 default_calendar = personal
 highlight_event_days = True
+
+[view]
+agenda_event_format = "{calendar-color}{cancelled}{start-end-time-style} {title}{repeat-symbol}{reset}"
