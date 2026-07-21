@@ -4,9 +4,13 @@
 path = ~/.local/share/calendars/personal/
 type = calendar
 
-[[contact_birthdays]]
-path = ~/.local/share/calendars/contact_birthdays/
-type = calendar
+    [[contact_birthdays]]
+    path = ~/.local/share/calendars/contact_birthdays/
+    type = calendar
+
+    [[outlook]]
+    path = ~/.local/share/calendars/outlook/
+    type = calendar
 
 [locale]
 timeformat = %H:%M

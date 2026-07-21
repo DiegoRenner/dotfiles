@@ -239,6 +239,7 @@ binde = $mainMod, Q, killactive,
 # Force kill focused window, ignoring dropdowns
 bind = $mainMod SHIFT, Q, exec, bash -c 'pid=$(hyprctl activewindow -j | jq -r ".pid"); inst=$(hyprctl activewindow -j | jq -r ".appId"); [[ $inst =~ ^dropdown_ ]] || kill -9 $pid'
 bind = $mainMod, M, exit,
+bind = $mainMod, C, exec, /home/diego/.config/waybar/khal_clock.py --right-click # Toggle Calendar
 bind = $mainMod, E, exec, $fileManager
 bind = $mainMod SHIFT, E, exec, /home/diego/.config/hypr/scripts/fill_test_account.sh # fill signup form with dated test-account email + password
 bind = $mainMod SHIFT, B, togglefloating,

@@ -17,3 +17,17 @@ type = "caldav"
 url = "https://rhub.hopto.org/remote.php/dav"
 username = "Admin"
 password.fetch = ["command", "cat", "/home/diego/.config/vdirsyncer/password"]
+
+[pair outlook_calendar]
+a = "outlook_local"
+b = "outlook_remote"
+collections = null
+
+[storage outlook_local]
+type = "filesystem"
+path = "~/.local/share/calendars/outlook/"
+fileext = ".ics"
+
+[storage outlook_remote]
+type = "http"
+url = "https://outlook.office365.com/owa/calendar/01eaf8e6be25467098edd9514fcca5c3@imperial.ac.uk/3b893f3383db4f5b9869aa6172a3464214164147366279208021/calendar.ics"
