@@ -47,8 +47,10 @@ def handle_click():
         f.write(str(now))
 
     if (now - last_click) < 0.4:
-        # Double click: open interactive calendar window
+        # Double click: revert the first click toggle and launch interactive calendar
+        toggle_state()
         subprocess.Popen(['alacritty', '--class', 'khal_calendar', '-e', 'khal', 'interactive'])
+        subprocess.run(['pkill', '-RTMIN+8', 'waybar'])
     else:
         # Single click: toggle time/date display
         toggle_state()

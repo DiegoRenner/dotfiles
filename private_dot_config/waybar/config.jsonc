@@ -123,6 +123,7 @@
     "interval": 60,
     "signal": 8,
     "on-click": "/home/diego/.config/waybar/khal_clock.py --click",
+    "on-click-right": "/home/diego/.config/waybar/khal_clock.py --toggle",
     "format": "{text} {icon}",
     "format-icons": [""]
   },
