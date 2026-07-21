@@ -4,8 +4,10 @@ import json
 import subprocess
 import sys
 import os
+import time
 
 STATE_FILE = "/tmp/waybar_clock_state"
+LAST_CLICK_FILE = "/tmp/waybar_clock_last_click"
 
 def get_khal_calendar():
     try:
@@ -18,32 +20,52 @@ def get_khal_calendar():
 def toggle_state():
     state = "time"
     if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, "r") as f:
-            state = f.read().strip()
+        try:
+            with open(STATE_FILE, "r") as f:
+                state = f.read().strip()
+        except Exception:
+            state = "time"
     
     new_state = "date" if state == "time" else "time"
-    with open(STATE_FILE, "w") as f:
-        f.write(new_state)
-    
-    # We don't print anything on toggle, waybar will run the script again immediately if we use signals,
-    # but with `custom`, `on-click` executes a command. We can just execute the toggle and then send SIGRTMIN
-    # to waybar to update the module. But wait! `custom` module updates automatically if `on-click` finishes
-    # IF `exec-on-event` is false? No, `custom` module only updates based on `interval` or signal.
-    # Actually, we can just print the updated state directly here, but wait...
-    # If `on-click` calls `--toggle`, it's a separate process. Waybar doesn't capture its output for the module.
-    # We should send a signal to Waybar to refresh the module.
+    try:
+        with open(STATE_FILE, "w") as f:
+            f.write(new_state)
+    except Exception:
+        pass
+
+def handle_click():
+    now = time.time()
+    last_click = 0.0
+    if os.path.exists(LAST_CLICK_FILE):
+        try:
+            with open(LAST_CLICK_FILE, "r") as f:
+                last_click = float(f.read().strip())
+        except Exception:
+            pass
+
+    with open(LAST_CLICK_FILE, "w") as f:
+        f.write(str(now))
+
+    if (now - last_click) < 0.4:
+        # Double click: open interactive calendar window
+        subprocess.Popen(['alacritty', '--class', 'khal_calendar', '-e', 'khal', 'interactive'])
+    else:
+        # Single click: toggle time/date display
+        toggle_state()
+        subprocess.run(['pkill', '-RTMIN+8', 'waybar'])
 
 def get_state():
     if os.path.exists(STATE_FILE):
-        with open(STATE_FILE, "r") as f:
-            return f.read().strip()
+        try:
+            with open(STATE_FILE, "r") as f:
+                return f.read().strip()
+        except Exception:
+            pass
     return "time"
 
 def main():
-    if len(sys.argv) > 1 and sys.argv[1] == "--toggle":
-        toggle_state()
-        # Find waybar process and send SIGRTMIN+8 (we will configure waybar to use signal 8)
-        subprocess.run(['pkill', '-RTMIN+8', 'waybar'])
+    if len(sys.argv) > 1 and (sys.argv[1] == "--toggle" or sys.argv[1] == "--click"):
+        handle_click()
         return
 
     state = get_state()
