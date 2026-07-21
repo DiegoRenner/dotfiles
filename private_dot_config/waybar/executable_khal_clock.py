@@ -10,10 +10,10 @@ STATE_FILE = "/tmp/waybar_clock_state"
 def get_khal_calendar():
     try:
         # Run khal calendar. It outputs 3 months and appointments
-        cal = subprocess.run(['khal', 'calendar'], capture_output=True, text=True).stdout
-        return cal.rstrip()
+        res = subprocess.run(['khal', 'calendar'], capture_output=True, text=True, timeout=2)
+        return res.stdout.rstrip()
     except Exception as e:
-        return str(e)
+        return "Calendar output unavailable"
 
 def toggle_state():
     state = "time"
