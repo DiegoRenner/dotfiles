@@ -46,13 +46,32 @@ def handle_click():
     with open(LAST_CLICK_FILE, "w") as f:
         f.write(str(now))
 
-    if (now - last_click) < 0.4:
-        # Double click: revert the first click toggle and launch interactive calendar
-        toggle_state()
+    if (now - last_click) < 0.35:
+        # Double-click detected! Remove file so 3rd click is treated as fresh click
+        if os.path.exists(LAST_CLICK_FILE):
+            try:
+                os.remove(LAST_CLICK_FILE)
+            except Exception:
+                pass
+        # Launch interactive calendar window
         subprocess.Popen(['alacritty', '--class', 'khal_calendar', '-e', 'khal', 'interactive'])
-        subprocess.run(['pkill', '-RTMIN+8', 'waybar'])
     else:
-        # Single click: toggle time/date display
+        # Single-click: wait briefly (0.25s) to see if a 2nd click arrives
+        time.sleep(0.25)
+        if os.path.exists(LAST_CLICK_FILE):
+            try:
+                with open(LAST_CLICK_FILE, "r") as f:
+                    current_last = float(f.read().strip())
+                if abs(current_last - now) > 0.001:
+                    # A second click arrived during delay; cancel single-click toggle
+                    return
+            except Exception:
+                pass
+        else:
+            # File removed by double-click handler; cancel single-click toggle
+            return
+
+        # No second click arrived; execute single-click toggle
         toggle_state()
         subprocess.run(['pkill', '-RTMIN+8', 'waybar'])
 
