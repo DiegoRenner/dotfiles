@@ -33,6 +33,10 @@ def toggle_state():
     except Exception:
         pass
 
+def show_dropdown_notification():
+    cal = get_khal_calendar()
+    subprocess.run(['notify-send', '-a', 'Calendar', '📅 Calendar', cal])
+
 def handle_click():
     now = time.time()
     last_click = 0.0
@@ -85,9 +89,14 @@ def get_state():
     return "time"
 
 def main():
-    if len(sys.argv) > 1 and (sys.argv[1] == "--toggle" or sys.argv[1] == "--click"):
-        handle_click()
-        return
+    if len(sys.argv) > 1:
+        arg = sys.argv[1]
+        if arg == "--right-click":
+            show_dropdown_notification()
+            return
+        elif arg == "--toggle" or arg == "--click":
+            handle_click()
+            return
 
     state = get_state()
     now = datetime.datetime.now()

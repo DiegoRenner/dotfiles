@@ -122,7 +122,9 @@
     "return-type": "json",
     "interval": 60,
     "signal": 8,
+    "tooltip": false,
     "on-click": "/home/diego/.config/waybar/khal_clock.py --click",
+    "on-click-right": "/home/diego/.config/waybar/khal_clock.py --right-click",
     "format": "{text} {icon}",
     "format-icons": [""]
   },
