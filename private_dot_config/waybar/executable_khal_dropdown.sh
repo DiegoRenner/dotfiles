@@ -1,9 +1,11 @@
 #!/bin/bash
+# Use alternate screen buffer to prevent ANY scrollback or cutoff at the top
+tput smcup
+echo -en "\e[H\e[2J"
+
 # Enable SGR mouse tracking
 echo -en "\e[?1000h\e[?1006h"
 
-# Clear screen to ensure text starts at the very top
-clear
 cat /tmp/khal_cache_full.txt
 echo -e "\n\e[90m(Click anywhere to open full calendar)\e[0m"
 
@@ -30,3 +32,4 @@ while true; do
 done
 
 echo -en "\e[?1006l\e[?1000l"
+tput rmcup
