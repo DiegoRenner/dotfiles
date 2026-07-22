@@ -8,7 +8,7 @@ if [ "$1" = "--right-click" ]; then
     calc_width=600
     if [ -f /tmp/khal_cache_full.txt ]; then
         lines=$(wc -l < /tmp/khal_cache_full.txt)
-        calc_height=$((320 + (lines - 15) * 20))
+        calc_height=$((380 + (lines - 15) * 22))
         max_len=$(awk '{ if (length($0) > max) max = length($0) } END { print max }' /tmp/khal_cache_full.txt)
         if [ -z "$max_len" ]; then max_len=59; fi
         calc_width=$((40 + max_len * 9))
