@@ -3,7 +3,30 @@ touch /tmp/khal_dropdown_open
 pkill -RTMIN+8 waybar
 
 # Trap exit to ensure flag is cleared even if window is force closed
-trap "echo -en '\e[?1006l\e[?1000l\e[?25h'; tput rmcup; rm -f /tmp/khal_dropdown_open; pkill -RTMIN+8 waybar" EXIT
+trap "echo -en '\e[?1006l\e[?1000l\e[?25h'; tput rmcup; rm -f /tmp/khal_dropdown_open; pkill -RTMIN+8 waybar; exit 0" EXIT TERM INT HUP
+
+# Watch for focus loss and auto-close
+(
+    # Give the window up to 2 seconds to actually spawn and gain focus
+    for i in {1..20}; do
+        sleep 0.1
+        active=$(hyprctl activewindow -j 2>/dev/null | jq -r '.class' 2>/dev/null)
+        if [[ "$active" == "khal_dropdown" ]]; then
+            break
+        fi
+    done
+    
+    # Now watch for it to lose focus
+    while true; do
+        sleep 0.2
+        active=$(hyprctl activewindow -j 2>/dev/null | jq -r '.class' 2>/dev/null)
+        if [[ "$active" != "khal_dropdown" ]]; then
+            # Lost focus! Kill the parent script
+            kill -TERM $$
+            break
+        fi
+    done
+) &
 
 # Use alternate screen buffer to prevent ANY scrollback or cutoff at the top
 tput smcup
