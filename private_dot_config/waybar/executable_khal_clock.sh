@@ -10,7 +10,7 @@ if [ "$1" = "--click" ]; then
     exit 0
 fi
 
-(khal calendar today 7d > /tmp/khal_cache.txt.tmp && mv /tmp/khal_cache.txt.tmp /tmp/khal_cache.txt) &
+(khal calendar today 7d > /tmp/khal_cache.txt.tmp && mv /tmp/khal_cache.txt.tmp /tmp/khal_cache.txt) >/dev/null 2>&1 </dev/null &
 
 state=$(cat /tmp/waybar_clock_state 2>/dev/null || echo "time")
 if [ "$state" = "date" ]; then
