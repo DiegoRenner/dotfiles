@@ -24,6 +24,10 @@ if [ "$1" = "--right-click" ]; then
     hyprctl dispatch exec "[float; size $calc_width $calc_height; move $x_pos 40; pin] alacritty --class khal_dropdown -e /home/diego/.config/waybar/khal_dropdown.sh"
     exit 0
 elif [ "$1" = "--click" ]; then
+    if pgrep -f "alacritty --class khal_dropdown" >/dev/null; then
+        pkill -f "alacritty --class khal_dropdown"
+        exit 0
+    fi
     state=$(cat /tmp/waybar_clock_state 2>/dev/null || echo "time")
     if [ "$state" = "time" ]; then
         echo "date" > /tmp/waybar_clock_state
