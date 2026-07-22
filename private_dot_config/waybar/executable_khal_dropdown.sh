@@ -1,7 +1,8 @@
 #!/bin/bash
 # Use alternate screen buffer to prevent ANY scrollback or cutoff at the top
 tput smcup
-echo -en "\e[H\e[2J"
+tput clear
+tput cup 0 0
 
 # Enable SGR mouse tracking
 echo -en "\e[?1000h\e[?1006h"
