@@ -15,7 +15,12 @@ if [ "$1" = "--right-click" ]; then
         if [ $calc_width -lt 350 ]; then calc_width=350; fi
         if [ $calc_width -gt 900 ]; then calc_width=900; fi
     fi
-    hyprctl dispatch exec "[float; size $calc_width $calc_height; move 1350 40; pin] alacritty --class khal_dropdown -e /home/diego/.config/waybar/khal_dropdown.sh"
+    
+    focused_width=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .width / .scale | floor' 2>/dev/null)
+    if [ -z "$focused_width" ]; then focused_width=1920; fi
+    x_pos=$((focused_width - calc_width - 20))
+    
+    hyprctl dispatch exec "[float; size $calc_width $calc_height; move $x_pos 40; pin] alacritty --class khal_dropdown -e /home/diego/.config/waybar/khal_dropdown.sh"
     exit 0
 elif [ "$1" = "--click" ]; then
     state=$(cat /tmp/waybar_clock_state 2>/dev/null || echo "time")
