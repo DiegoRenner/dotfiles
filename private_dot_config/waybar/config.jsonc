@@ -124,7 +124,7 @@
     "signal": 8,
     "tooltip": true,
     "on-click": "/home/diego/.config/waybar/khal_clock.sh --click",
-    "on-click-right": "alacritty --class khal_calendar -e khal interactive",
+    "on-click-right": "/home/diego/.config/waybar/khal_clock.sh --right-click",
     "format": "{text} {icon}",
     "format-icons": [""]
   },
