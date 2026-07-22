@@ -12,11 +12,10 @@ TOOLTIP_STATE_FILE = "/tmp/waybar_tooltip_state"
 
 def get_khal_calendar():
     try:
-        # Run khal calendar. It outputs 3 months and appointments
-        res = subprocess.run(['khal', 'calendar'], capture_output=True, text=True, timeout=2)
-        return res.stdout.rstrip()
-    except Exception as e:
-        return "Calendar output unavailable"
+        with open('/tmp/khal_cache.txt', 'r') as f:
+            return f.read().rstrip()
+    except Exception:
+        return "Calendar cache unavailable"
 
 def toggle_state():
     state = "time"
