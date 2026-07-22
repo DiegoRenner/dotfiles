@@ -7,8 +7,9 @@ tput cup 0 0
 # Enable SGR mouse tracking and hide cursor
 echo -en "\e[?1000h\e[?1006h\e[?25l"
 
-cat /tmp/khal_cache_full.txt
-echo -e "\n\e[90m(Click anywhere to open full calendar)\e[0m"
+# Print file without its trailing newline, then exactly one newline, then the footer with NO trailing newline
+cat /tmp/khal_cache_full.txt | head -c -1
+echo -en "\n\e[90m(Click anywhere to open full calendar)\e[0m"
 
 while true; do
     read -rs -n 1 char
