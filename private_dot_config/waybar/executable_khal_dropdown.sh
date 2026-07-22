@@ -4,8 +4,8 @@ tput smcup
 tput clear
 tput cup 0 0
 
-# Enable SGR mouse tracking
-echo -en "\e[?1000h\e[?1006h"
+# Enable SGR mouse tracking and hide cursor
+echo -en "\e[?1000h\e[?1006h\e[?25l"
 
 cat /tmp/khal_cache_full.txt
 echo -e "\n\e[90m(Click anywhere to open full calendar)\e[0m"
@@ -32,5 +32,5 @@ while true; do
     fi
 done
 
-echo -en "\e[?1006l\e[?1000l"
+echo -en "\e[?1006l\e[?1000l\e[?25h"
 tput rmcup
