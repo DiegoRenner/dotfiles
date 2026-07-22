@@ -126,9 +126,12 @@ def main():
         text = now.strftime("%Y-%m-%d")
     else:
         text = now.strftime("%H:%M")
+    tooltip = get_khal_calendar()
+    tooltip = tooltip.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
     
     print(json.dumps({
         "text": text,
+        "tooltip": f"<tt>{tooltip}</tt>",
         "class": "custom-clock"
     }))
 
