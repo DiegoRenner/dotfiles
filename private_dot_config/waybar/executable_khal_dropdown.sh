@@ -1,4 +1,6 @@
 #!/bin/bash
+touch /tmp/khal_dropdown_open
+pkill -RTMIN+8 waybar
 # Use alternate screen buffer to prevent ANY scrollback or cutoff at the top
 tput smcup
 tput clear
@@ -35,3 +37,5 @@ done
 
 echo -en "\e[?1006l\e[?1000l\e[?25h"
 tput rmcup
+rm -f /tmp/khal_dropdown_open
+pkill -RTMIN+8 waybar

@@ -47,11 +47,16 @@ else
     text=$(date "+%H:%M")
 fi
 
-tooltip=$(cat /tmp/khal_cache_next.txt 2>/dev/null || echo "Calendar cache unavailable")
-tooltip=${tooltip//&/&amp;}
-tooltip=${tooltip//</&lt;}
-tooltip=${tooltip//>/&gt;}
+if [ -f /tmp/khal_dropdown_open ]; then
+    tooltip=""
+else
+    tooltip=$(cat /tmp/khal_cache_next.txt 2>/dev/null || echo "Calendar cache unavailable")
+    tooltip=${tooltip//&/&amp;}
+    tooltip=${tooltip//</&lt;}
+    tooltip=${tooltip//>/&gt;}
+    tooltip="<tt>${tooltip//$'\n'/\\n}</tt>"
+fi
 
 cat <<OUT
-{"text": "$text", "tooltip": "<tt>${tooltip//$'\n'/\\n}</tt>", "class": "custom-clock"}
+{"text": "$text", "tooltip": "$tooltip", "class": "custom-clock"}
 OUT
