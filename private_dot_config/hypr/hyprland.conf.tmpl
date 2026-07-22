@@ -431,6 +431,18 @@ exec = gsettings set org.gnome.desktop.interface color-scheme "{{ if .dark_mode 
 
 
 
+# khal dropdown dismissal: while the waybar calendar dropdown is open,
+# khal_dropdown.sh switches into this submap so ANY mouse click (tap included)
+# and Escape are routed to the dismiss handler, without an overlay, so the
+# cursor keeps its normal shape. The handler and the dropdown's exit trap both
+# reset the submap, and every bound click resets it first thing (self-healing).
+submap = khal_dropdown
+bind = , mouse:272, exec, /home/diego/.config/waybar/khal_dropdown_click.sh click
+bind = , mouse:273, exec, /home/diego/.config/waybar/khal_dropdown_click.sh click
+bind = , mouse:274, exec, /home/diego/.config/waybar/khal_dropdown_click.sh click
+bind = , escape, exec, /home/diego/.config/waybar/khal_dropdown_click.sh esc
+submap = reset
+
 # Float khal calendar
 windowrule {
     name = khal-calendar

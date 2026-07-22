@@ -17,11 +17,23 @@ if [ "$1" = "--right-click" ]; then
         if [ $calc_width -gt 900 ]; then calc_width=900; fi
     fi
     
-    focused_width=$(hyprctl monitors -j | jq -r '.[] | select(.focused) | .width / .scale | floor' 2>/dev/null)
-    if [ -z "$focused_width" ]; then focused_width=1920; fi
-    x_pos=$((focused_width - calc_width - 20))
-    
-    hyprctl dispatch exec "[float; size $calc_width $calc_height; move $x_pos 40; pin] alacritty --class khal_dropdown -e /home/diego/.config/waybar/khal_dropdown.sh"
+    # Anchor the dropdown's TOP-RIGHT corner at the cursor (global logical
+    # coords), clamped into the focused monitor so it never opens off-screen.
+    pos=$(hyprctl cursorpos 2>/dev/null)
+    cx=${pos%%,*}; cx=${cx%%.*}
+    cy=${pos#*, }; cy=${cy%% *}; cy=${cy%%.*}
+    read -r mon_x mon_y mon_w mon_h <<< "$(hyprctl monitors -j 2>/dev/null | jq -r '.[] | select(.focused) | "\(.x) \(.y) \((.width / .scale) | floor) \((.height / .scale) | floor)"')"
+    case "$cx" in ''|*[!0-9-]*) cx=$(( ${mon_x:-0} + ${mon_w:-1920} - 20 )) ;; esac
+    case "$cy" in ''|*[!0-9-]*) cy=$(( ${mon_y:-0} + 40 )) ;; esac
+    mon_x=${mon_x:-0}; mon_y=${mon_y:-0}; mon_w=${mon_w:-1920}; mon_h=${mon_h:-1080}
+    x_pos=$((cx - calc_width))
+    y_pos=$cy
+    [ "$x_pos" -lt "$mon_x" ] && x_pos=$mon_x
+    max_y=$((mon_y + mon_h - calc_height))
+    [ "$y_pos" -gt "$max_y" ] && y_pos=$max_y
+    [ "$y_pos" -lt "$mon_y" ] && y_pos=$mon_y
+
+    hyprctl dispatch exec "[float; size $calc_width $calc_height; move $x_pos $y_pos; pin] alacritty --class khal_dropdown -e /home/diego/.config/waybar/khal_dropdown.sh"
     exit 0
 elif [ "$1" = "--click" ]; then
     if pgrep -f "alacritty --class khal_dropdown" >/dev/null; then
