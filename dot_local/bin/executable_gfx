@@ -1,0 +1,67 @@
+#!/bin/bash
+# gfx - switch GPU mode AND the matching boot entry in one step.
+#
+# Why this exists: the panel backlight owner is decided ONCE PER BOOT by the
+# kernel's backlight arbiter (drivers/acpi/video_detect.c), from the kernel
+# cmdline -- there is no runtime knob. And the working interface differs per
+# GPU mode on this laptop (FA608WV):
+#
+#   AsusMuxDgpu : panel on NVIDIA -> only nvidia_0 works
+#                 -> needs   acpi_backlight=native      -> entry g14.conf
+#   Hybrid      : panel on amdgpu -> only nvidia_wmi_ec_backlight works
+#                 -> needs   NO acpi_backlight param    -> entry g14-hybrid.conf
+#                 (amdgpu_bl1 registers here but is physically dead - verified)
+#
+# Switching mode without switching the boot entry leaves you with a registered
+# but dead backlight device and no brightness control. This wrapper keeps the
+# two in sync, so the mode switch and the reboot land on the right cmdline.
+
+set -u
+
+DGPU_ENTRY="g14.conf"
+HYBRID_ENTRY="g14-hybrid.conf"
+
+usage() {
+    cat >&2 <<EOF
+usage: gfx {dgpu|hybrid|status}
+
+  dgpu     switch to AsusMuxDgpu + boot entry '$DGPU_ENTRY'   (acpi_backlight=native)
+  hybrid   switch to Hybrid      + boot entry '$HYBRID_ENTRY' (no acpi_backlight)
+  status   show current mode, boot default and live backlight device
+
+Both mode switches require a reboot; this only sets things up for it.
+EOF
+    exit 2
+}
+
+show_status() {
+    echo "gfx mode      : $(supergfxctl -g 2>/dev/null || echo '?')"
+    echo "boot default  : $(bootctl status 2>/dev/null | awk -F': *' '/Default Entry/{print $2; exit}')"
+    echo "backlight dev : $(ls /sys/class/backlight/ 2>/dev/null | tr '\n' ' ')"
+    echo "cmdline       : $(grep -o 'acpi_backlight=[a-z_]*' /proc/cmdline || echo '(no acpi_backlight param)')"
+}
+
+case "${1:-}" in
+    dgpu)   MODE=AsusMuxDgpu; ENTRY=$DGPU_ENTRY ;;
+    hybrid) MODE=Hybrid;      ENTRY=$HYBRID_ENTRY ;;
+    status) show_status; exit 0 ;;
+    *)      usage ;;
+esac
+
+if [ ! -f "/boot/loader/entries/$ENTRY" ]; then
+    echo "gfx: missing boot entry /boot/loader/entries/$ENTRY" >&2
+    exit 1
+fi
+
+echo "gfx: setting boot default -> $ENTRY"
+sudo bootctl set-default "$ENTRY" || { echo "gfx: failed to set boot default, aborting" >&2; exit 1; }
+
+echo "gfx: switching graphics mode -> $MODE"
+if ! supergfxctl -m "$MODE"; then
+    echo "gfx: mode switch failed; reverting boot default" >&2
+    sudo bootctl set-default "$([ "$ENTRY" = "$DGPU_ENTRY" ] && echo "$HYBRID_ENTRY" || echo "$DGPU_ENTRY")"
+    exit 1
+fi
+
+echo
+echo "gfx: done. Reboot to apply (the menu will now default to '$ENTRY')."
