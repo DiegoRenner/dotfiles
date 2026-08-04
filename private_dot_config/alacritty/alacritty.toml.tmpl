@@ -33,3 +33,8 @@ cursor = "{{ .colors.accent }}"
 key = "Return"
 mods = "Shift"
 chars = "\u001B\r"
+
+[bell]
+animation = "EaseOutExpo"
+duration = 100
+command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/bell.oga"] }
