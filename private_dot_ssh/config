@@ -9,9 +9,19 @@ Host leonhard
   User			drenner
   IdentityFile	~/.ssh/id_ed25519_leonhard
 Host stevetown
-  HostName		192.168.1.74
+  HostName		192.168.1.84
   User			steve
   IdentityFile	~/.ssh/id_rsa
+  Port 			1522
+Host minecraft
+  HostName		192.168.1.84
+  User			steve
+  IdentityFile	~/.ssh/id_ed25519_minecraft
+  Port 			1522
+Host minecraft_ext
+  HostName		rhub.hopto.org
+  User			steve
+  IdentityFile	~/.ssh/id_ed25519_minecraft
   Port 			1522
 Host stevetown_ext
   HostName		192.168.1.15
@@ -63,14 +73,13 @@ Host shallowblue_ext
   ProxyCommand 	ssh pi2_ext -W %h:%p
   Port			1422
 Host mustang
-  Hostname 		192.168.1.225
+  Hostname 		192.168.1.32
   User			diego
   IdentityFile	~/.ssh/id_ed25519_mustang
 Host mustang_ext
-  Hostname 		192.168.1.32
+  Hostname 		rhub.hopto.org
   User			diego
-  IdentityFile	~/.ssh/id_rsa_mustang
-  ProxyCommand 	ssh pi4_ext -W %h:%p
+  IdentityFile	~/.ssh/id_ed25519_mustang
 Host mustang_ext_root
   Hostname 		192.168.1.32
   User			root
