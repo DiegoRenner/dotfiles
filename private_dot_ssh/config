@@ -76,10 +76,14 @@ Host mustang
   Hostname 		192.168.1.32
   User			diego
   IdentityFile	~/.ssh/id_ed25519_mustang
+  ForwardX11 yes
+  Compression yes
 Host mustang_ext
   Hostname 		rhub.hopto.org
   User			diego
   IdentityFile	~/.ssh/id_ed25519_mustang
+  ForwardX11 yes
+  Compression yes
 Host mustang_ext_root
   Hostname 		192.168.1.32
   User			root
