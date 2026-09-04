@@ -84,6 +84,12 @@ Host mustang_ext
   IdentityFile	~/.ssh/id_ed25519_mustang
   ForwardX11 yes
   Compression yes
+Host mustang_ext_pt
+  Hostname 		rhub.hopto.org
+  User			plantime
+  IdentityFile	~/.ssh/id_ed25519_mustang
+  ForwardX11 yes
+  Compression yes
 Host mustang_ext_root
   Hostname 		192.168.1.32
   User			root
