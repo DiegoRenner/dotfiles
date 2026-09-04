@@ -23,6 +23,18 @@ Host minecraft_ext
   User			steve
   IdentityFile	~/.ssh/id_ed25519_minecraft
   Port 			1522
+Host minecraft_tun
+  HostName      rhub.hopto.org
+  Port          1522
+  User          steve
+  IdentityFile  ~/.ssh/id_ed25519_minecraft
+  LocalForward  9443 localhost:9443   # Portainer   https://localhost:9443
+  LocalForward  8096 localhost:8096   # Jellyfin    http://localhost:8096
+  LocalForward  5055 localhost:5055   # Jellyseerr  http://localhost:5055
+  LocalForward  8080 localhost:8080   # qBittorrent http://localhost:8080
+  LocalForward  7878 localhost:7878   # Radarr
+  LocalForward  8989 localhost:8989   # Sonarr
+  LocalForward  9696 localhost:9696   # Prowlarr
 Host stevetown_ext
   HostName		192.168.1.15
   User			steve
