@@ -35,6 +35,10 @@ Host minecraft_tun
   LocalForward  7878 localhost:7878   # Radarr
   LocalForward  8989 localhost:8989   # Sonarr
   LocalForward  9696 localhost:9696   # Prowlarr
+  LocalForward  8686 localhost:8686   # Lidarr
+  LocalForward  3000 localhost:3000   # Tracearr
+  LocalForward  13378 localhost:13378 # Audiobookshelf
+  LocalForward  8265 localhost:8265   # Tdarr
 Host stevetown_ext
   HostName		192.168.1.15
   User			steve
@@ -95,6 +99,7 @@ Host mustang_ext
   User			diego
   IdentityFile	~/.ssh/id_ed25519_mustang
   ForwardX11 yes
+  ForwardX11Trusted yes
   Compression yes
 Host mustang_ext_pt
   Hostname 		rhub.hopto.org
