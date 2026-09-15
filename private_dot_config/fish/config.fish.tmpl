@@ -20,7 +20,15 @@ set -gx PATH "$PATH:/opt/cuda/nsight_compute"
 set -gx PATH "$PATH:/opt/cuda/nsight_systems/bin"
 set -gx NVCC_CCBIN "/usr/bin/g++-14"
 
-
+{{ if eq .chezmoi.username "plantime" -}}
+# Gas City service account on mustang: gc lives in ~/.local/gc-bin, the town
+# ledger runs ahead of the packaged bd, and `systemd --user` over ssh (linger is
+# enabled) only works with the runtime dir and bus address set explicitly.
+fish_add_path -p ~/.local/gc-bin ~/.local/bin
+set -gx BD_IGNORE_SCHEMA_SKEW 1
+set -gx XDG_RUNTIME_DIR /run/user/(id -u)
+set -gx DBUS_SESSION_BUS_ADDRESS unix:path=/run/user/(id -u)/bus
+{{ end }}
 set -gx EDITOR nvim
 set -gx TERMINAL st
 set -gx BROWSER brave
@@ -60,11 +68,13 @@ alias p="sudo pacman"
 alias ls="ls --color=auto"
 alias i3exit="$HOME/.scripts/i3_exit.sh"
 alias xournalpp="/usr/bin/env GDK_SCALE=2 xournalpp"
+{{ if ne .chezmoi.username "plantime" -}}
 alias thesis="cd $HOME/studies/uni/thesis_maths"
 alias writing="cd $HOME/studies/uni/thesis_maths/writing/On-fast-simulations-of-cardiac-function"
 alias presentation="cd $HOME/studies/uni/thesis_maths/writing/On-fast-simulations-of-cardiac-function/presentation"
 alias webs="cd $HOME/code/PhpstormProjects/portfolio_michael/"
 alias coding="cd $HOME/studies/uni/thesis_maths/jaxFlowSim"
+{{ end -}}
 alias btDC="sudo bluetoothctl power off"
 alias btBH="sudo bluetoothctl power on; bluetoothctl connect 00:58:50:4C:39:EA"
 alias btUE="sudo bluetoothctl power on; bluetoothctl connect 00:0D:44:DD:8D:A0"
@@ -74,20 +84,24 @@ alias btJ="sudo bluetoothctl power on; bluetoothctl connect 50:C2:75:E8:D0:60"
 alias btR="sudo bluetoothctl power on; bluetoothctl connect F4:4E:FC:35:28:13"
 alias bt30="sudo bluetoothctl power on; bluetoothctl connect 2C:BE:EE:5D:FD:9C"
 alias bt31="sudo bluetoothctl power on; bluetoothctl connect 2C:BE:EE:6B:F8:F4"
+{{ if ne .chezmoi.username "plantime" -}}
 alias dashboard="python $HOME/Programming/dashboard/dashboard_threaded.py $HOME/Programming/dashboard/config.json"
 alias hackintosh="cd $HOME/Programming/macOS-Simple-KVM; sudo $HOME/Programming/macOS-Simple-KVM/basic.sh"
+{{ end -}}
 alias fmoto="xmoto -res 1920x1080 -win"
 alias sfmoto="xmoto -res 1680x1050 -win"
 alias wmoto="xmoto -res 960x540 -win"
 alias swmoto="xmoto -res 840x525 -win"
 alias bckp="backup_duplicity.sh"
 alias dls="youtube-dl -x --audio-quality 0 --audio-format m4a"
+{{ if ne .chezmoi.username "plantime" -}}
 alias remote="cd $HOME/studies/uni/phd/remote/"
 alias phd="cd $HOME/studies/uni/phd"
 alias gpu="cd $HOME/studies/uni/phd/gpu_build/"
 alias web="cd $HOME/code/webapp/"
 alias plan="cd $HOME/code/planner-matrix/"
 alias jax="cd $HOME/studies/uni/thesis_maths/jaxFlowSim/"
+{{ end -}}
 alias zsc="sudo zscaler-config"
 alias wlion="clion -Dawt.toolkit.name=WLToolkit"
 alias pdfp='GDK_BACKEND=x11 pdfpc'
