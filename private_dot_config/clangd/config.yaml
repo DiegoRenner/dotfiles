@@ -1,0 +1,25 @@
+CompileFlags:
+  CompilationDatabase: /home/diego/.local/build/nektar-trace-wt/build-evidence-cuda
+  Add:
+    - -std=c++17
+    - --cuda-path=/opt/cuda
+    - -Wno-unknown-warning-option
+    - -Wno-unknown-pragmas
+  Remove:
+    - -forward-unknown-to-host-compiler
+    - --generate-code*
+    - -gencode*
+    - -Xcudafe*
+    - -Xcompiler*
+    - --options-file*
+    - -ccbin*
+    - --extended-lambda
+    - --expt-relaxed-constexpr
+
+Diagnostics:
+  Suppress:
+    - "drv_unknown_argument"
+    - "unknown_argument"
+
+Index:
+  Background: Build
