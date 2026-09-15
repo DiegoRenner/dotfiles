@@ -1,0 +1,14 @@
+{{- if eq .chezmoi.username "plantime" -}}
+# Gas City on mustang: hand the Linear app token to any herdr server started
+# from this shell. Panes inherit the herdr SERVER's environment, and
+# `herdr --session <name>` starts a server whenever none is running, so a shell
+# without the token silently replaces the supervisor-started server with a
+# keyless one and every pane's Linear MCP then answers 401.
+#
+# In conf.d and deliberately not behind `status is-interactive`: fish sources
+# these for non-interactive shells too, which is how `ssh <host> herdr ...`
+# arrives. Only the path lives here. The token itself stays in
+# ~/.gc/linear-app-token (0600, rotated by the city's linear-token-refresh order),
+# so it is read fresh at shell start and never enters this repo.
+test -r ~/.gc/linear-app-token; and set -gx LINEAR_APP_TOKEN (cat ~/.gc/linear-app-token)
+{{ end -}}
